@@ -14,7 +14,9 @@ namespace CorporateQnA.Core.Models.Dtos.AnswersDtos
 
         public DateTime AnsweredOn { get; set; }
 
-        public string AnsweredBy { get; set; }
+        public int AnsweredBy { get; set; }
+
+        public string EmployeeName { get; set; }
 
         public bool IsBestSolution { get; set; }
 

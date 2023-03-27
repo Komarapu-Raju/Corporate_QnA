@@ -1,6 +1,6 @@
 ﻿namespace CorporateQnA.Core.Models.Dtos.UserDtos
 {
-    public class UserDto
+    public class EmployeeDto
     {
         public int Id { get; set; }
 
