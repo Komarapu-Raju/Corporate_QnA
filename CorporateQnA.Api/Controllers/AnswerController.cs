@@ -1,12 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CorporateQnA.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CorporateQnA.Api.Controllers
 {
-    public class AnswerController : Controller
+    [ApiController]
+    [Route("api/[controller]/")]
+    public class AnswerController : ControllerBase
     {
-        public IActionResult Index()
+        private readonly IAnswerServices _answerServices;
+
+        public AnswerController(IAnswerServices answerServices)
         {
-            return View();
+            this._answerServices = answerServices;
         }
     }
 }

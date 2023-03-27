@@ -1,4 +1,6 @@
 using CorporateQnA.Infrastructure.DbContext;
+using CorporateQnA.Services.Implementations;
+using CorporateQnA.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<ApplicationDbContext>();
+
+builder.Services.AddScoped<IQuestionServices, QuestionServices>();
+
+builder.Services.AddScoped<IAnswerServices, AnswerServices>();
+
+builder.Services.AddScoped<ICategoryServices, CategoryServices>();
+
+builder.Services.AddScoped<IEmployeeServices, EmployeeServices>();
 
 var app = builder.Build();
 

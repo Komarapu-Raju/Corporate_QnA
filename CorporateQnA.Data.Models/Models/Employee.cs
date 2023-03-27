@@ -1,6 +1,6 @@
 ﻿namespace CorporateQnA.Data.Models.Models
 {
-    public class EmployeeModel
+    public class Employee
     {
         public int Id;
 

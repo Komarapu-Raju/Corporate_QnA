@@ -1,12 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CorporateQnA.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CorporateQnA.Api.Controllers
 {
-    public class CategoryController : Controller
+    [ApiController]
+    [Route("api/[controller]/")]
+    public class CategoryController : ControllerBase
     {
-        public IActionResult Index()
+        private readonly ICategoryServices _categoryServices;
+
+        public CategoryController(ICategoryServices categoryServices)
         {
-            return View();
+            this._categoryServices = categoryServices;
         }
     }
 }

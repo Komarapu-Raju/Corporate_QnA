@@ -2,6 +2,8 @@
 {
     public class EmployeeQuestionActivity
     {
+        public int Id { get; set; }
+
         public int QuestionId { get; set; }
 
         public int EmployeeId { get; set; }

@@ -1,12 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CorporateQnA.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CorporateQnA.Api.Controllers
 {
-    public class EmployeeController : Controller
+    [ApiController]
+    [Route("api/[controller]/")]
+    public class EmployeeController : ControllerBase
     {
-        public IActionResult Index()
+        private readonly IEmployeeServices _employeeServices;
+
+        public EmployeeController(IEmployeeServices employeeServices)
         {
-            return View();
+            this._employeeServices = employeeServices;
         }
     }
 }

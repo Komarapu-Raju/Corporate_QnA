@@ -1,6 +1,6 @@
 ﻿namespace CorporateQnA.Data.Models.Models
 {
-    public class AnswerModel
+    public class Answer
     {
         public int Id { get; set; }
 

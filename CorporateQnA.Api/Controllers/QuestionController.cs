@@ -1,12 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CorporateQnA.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CorporateQnA.Api.Controllers
 {
-    public class QuestionController : Controller
+    [ApiController]
+    [Route("api/[controller]/")]
+    public class QuestionController : ControllerBase
     {
-        public IActionResult Index()
+        private readonly IQuestionServices _questionServices;
+
+        public QuestionController(IQuestionServices questionServices)
         {
-            return View();
+            this._questionServices = questionServices;
         }
     }
 }
