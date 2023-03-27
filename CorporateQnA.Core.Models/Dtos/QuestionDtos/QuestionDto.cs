@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CorporateQnA.Core.Models.Dtos
+namespace CorporateQnA.Core.Models.Dtos.QuestionDtos
 {
     public class QuestionDto
     {

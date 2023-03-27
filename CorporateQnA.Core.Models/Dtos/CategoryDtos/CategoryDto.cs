@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CorporateQnA.Core.Models.Dtos
+namespace CorporateQnA.Core.Models.Dtos.CategoryDtos
 {
     public class CategoryDto
     {
@@ -18,6 +18,6 @@ namespace CorporateQnA.Core.Models.Dtos
 
         public int TagsThisWeek { get; set; }
 
-        public int TagsThisMonth { get; set;}
+        public int TagsThisMonth { get; set; }
     }
 }

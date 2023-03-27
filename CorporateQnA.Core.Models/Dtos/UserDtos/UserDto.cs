@@ -1,4 +1,4 @@
-﻿namespace CorporateQnA.Core.Models.Dtos
+﻿namespace CorporateQnA.Core.Models.Dtos.UserDtos
 {
     public class UserDto
     {
