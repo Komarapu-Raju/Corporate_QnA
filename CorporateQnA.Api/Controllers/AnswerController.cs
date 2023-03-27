@@ -2,7 +2,7 @@
 
 namespace CorporateQnA.Api.Controllers
 {
-    public class UserController : Controller
+    public class AnswerController : Controller
     {
         public IActionResult Index()
         {
