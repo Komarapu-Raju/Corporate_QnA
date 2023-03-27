@@ -2,7 +2,8 @@
 
 namespace CorporateQnA.Services.Implementations
 {
-    public class EmployeeServices : IEmployeeServices
+    public class QuestionService : IQuestionService
     {
+
     }
 }

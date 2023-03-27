@@ -1,6 +1,6 @@
 ﻿namespace CorporateQnA.Services.Interfaces
 {
-    public interface IQuestionServices
+    public interface IEmployeeService
     {
     }
 }

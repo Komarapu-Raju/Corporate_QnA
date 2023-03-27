@@ -1,6 +1,6 @@
-﻿namespace CorporateQnA.Core.Models.Dtos.EmployeeDtos
+﻿namespace CorporateQnA.Core.Models.Dtos.Response
 {
-    public class Employee
+    public class EmployeeDto
     {
         public int Id { get; set; }
 

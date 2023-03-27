@@ -13,13 +13,13 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<ApplicationDbContext>();
 
-builder.Services.AddScoped<IQuestionServices, QuestionServices>();
+builder.Services.AddScoped<IQuestionService, QuestionService>();
 
-builder.Services.AddScoped<IAnswerServices, AnswerServices>();
+builder.Services.AddScoped<IAnswerService, AnswerService>();
 
-builder.Services.AddScoped<ICategoryServices, CategoryServices>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
-builder.Services.AddScoped<IEmployeeServices, EmployeeServices>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
 var app = builder.Build();
 

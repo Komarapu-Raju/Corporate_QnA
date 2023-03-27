@@ -7,9 +7,9 @@ namespace CorporateQnA.Api.Controllers
     [Route("api/[controller]/")]
     public class CategoryController : ControllerBase
     {
-        private readonly ICategoryServices _categoryServices;
+        private readonly ICategoryService _categoryServices;
 
-        public CategoryController(ICategoryServices categoryServices)
+        public CategoryController(ICategoryService categoryServices)
         {
             this._categoryServices = categoryServices;
         }

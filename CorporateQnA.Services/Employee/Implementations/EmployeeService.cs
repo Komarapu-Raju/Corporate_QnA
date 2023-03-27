@@ -2,7 +2,7 @@
 
 namespace CorporateQnA.Services.Implementations
 {
-    public class CategoryServices : ICategoryServices
+    public class EmployeeService : IEmployeeService
     {
     }
 }

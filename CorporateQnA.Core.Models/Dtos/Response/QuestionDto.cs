@@ -1,12 +1,12 @@
-﻿namespace CorporateQnA.Core.Models.Dtos.QuestionDtos
+﻿namespace CorporateQnA.Core.Models.Dtos.Response
 {
-    public class Question
+    public class QuestionDto
     {
         public int Id { get; set; }
 
         public int CreatedBy { get; set; }
 
-        public string EmployeeName { get; set; }
+        public string EmployeeName { get; set; }    
 
         public string Title { get; set; }
 

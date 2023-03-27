@@ -1,6 +1,6 @@
-﻿namespace CorporateQnA.Core.Models.Dtos.AnswerDtos
+﻿namespace CorporateQnA.Core.Models.Dtos.Request
 {
-    public class NewAnswer
+    public class NewAnswerDto
     {
         public string Description { get; set; }
 

@@ -7,9 +7,9 @@ namespace CorporateQnA.Api.Controllers
     [Route("api/[controller]/")]
     public class EmployeeController : ControllerBase
     {
-        private readonly IEmployeeServices _employeeServices;
+        private readonly IEmployeeService _employeeServices;
 
-        public EmployeeController(IEmployeeServices employeeServices)
+        public EmployeeController(IEmployeeService employeeServices)
         {
             this._employeeServices = employeeServices;
         }

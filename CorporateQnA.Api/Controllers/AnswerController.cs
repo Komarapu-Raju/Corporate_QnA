@@ -7,9 +7,9 @@ namespace CorporateQnA.Api.Controllers
     [Route("api/[controller]/")]
     public class AnswerController : ControllerBase
     {
-        private readonly IAnswerServices _answerServices;
+        private readonly IAnswerService _answerServices;
 
-        public AnswerController(IAnswerServices answerServices)
+        public AnswerController(IAnswerService answerServices)
         {
             this._answerServices = answerServices;
         }

@@ -1,6 +1,6 @@
-﻿namespace CorporateQnA.Core.Models.Dtos.CategoryDtos
+﻿namespace CorporateQnA.Core.Models.Dtos.Request
 {
-    public class NewCategory
+    public class NewCategoryDto
     {
         public string Title { get; set; }
 
