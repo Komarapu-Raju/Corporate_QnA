@@ -1,4 +1,4 @@
-﻿namespace CorporateQnA.Data.Models
+﻿namespace CorporateQnA.Data.Models.Models
 {
     public class QuestionModel
     {
