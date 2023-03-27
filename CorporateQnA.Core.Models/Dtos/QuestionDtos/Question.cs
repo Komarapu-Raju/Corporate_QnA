@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CorporateQnA.Core.Models.Dtos.QuestionDtos
+﻿namespace CorporateQnA.Core.Models.Dtos.QuestionDtos
 {
-    public class QuestionDto
+    public class Question
     {
         public int Id { get; set; }
 
