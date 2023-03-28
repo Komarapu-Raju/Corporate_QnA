@@ -13,5 +13,6 @@
         public int CreatedBy { get; set; }
 
         public DateTime CreatedOn { get; set; }
+        public DateTime Createdn { get; set; }
     }
 }
