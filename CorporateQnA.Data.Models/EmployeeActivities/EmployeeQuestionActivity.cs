@@ -11,6 +11,5 @@
         public DateTime ViewedOn { get; set; }
 
         public short VoteStatus { get; set; }
-        public short VoteStats { get; set; }
     }
 }
