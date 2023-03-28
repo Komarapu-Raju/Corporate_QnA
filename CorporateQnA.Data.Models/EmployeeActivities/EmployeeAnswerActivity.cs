@@ -1,4 +1,4 @@
-﻿namespace CorporateQnA.Data.Models.Models
+﻿namespace CorporateQnA.Data.Models.EmployeeActivities
 {
     public class EmployeeAnswerActivity
     {
@@ -8,6 +8,6 @@
 
         public int EmployeeId { get; set; }
 
-        public int VoteStatus { get; set; }
+        public short VoteStatus { get; set; }
     }
 }

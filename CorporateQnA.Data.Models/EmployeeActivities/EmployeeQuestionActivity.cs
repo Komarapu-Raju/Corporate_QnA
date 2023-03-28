@@ -1,6 +1,6 @@
-﻿namespace CorporateQnA.Data.Models.Models
+﻿namespace CorporateQnA.Data.Models.EmployeeActivities
 {
-    public class EmployeeQuestionActivity
+    public class EmployeeQuestionActivityView
     {
         public int Id { get; set; }
 
@@ -10,6 +10,6 @@
 
         public DateTime ViewedOn { get; set; }
 
-        public int VoteStatus { get; set; }
+        public short VoteStatus { get; set; }
     }
 }

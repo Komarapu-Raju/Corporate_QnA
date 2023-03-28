@@ -1,4 +1,4 @@
-﻿namespace CorporateQnA.Data.Models.Models
+﻿namespace CorporateQnA.Data.Models.Category
 {
     public class Category
     {

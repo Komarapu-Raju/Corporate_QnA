@@ -1,4 +1,4 @@
-﻿namespace CorporateQnA.Data.Models.Models
+﻿namespace CorporateQnA.Data.Models.Question
 {
     public class Question
     {
@@ -8,7 +8,7 @@
 
         public string Description { get; set; }
 
-        public string CategoryId { get; set; }
+        public int CategoryId { get; set; }
 
         public int CreatedBy { get; set; }
 

@@ -1,4 +1,4 @@
-﻿namespace CorporateQnA.Data.Models.Models
+﻿namespace CorporateQnA.Data.Models.Employee
 {
     public class Employee
     {
@@ -6,7 +6,7 @@
 
         public string FirstName;
 
-        public string LastName;
+        public string? LastName;
 
         public string Email;
 
