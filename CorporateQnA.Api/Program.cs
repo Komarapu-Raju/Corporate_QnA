@@ -23,8 +23,6 @@ builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
 var app = builder.Build();
 
-//user3
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
