@@ -1,6 +1,6 @@
-﻿namespace CorporateQnA.Core.Models.Dtos.Request
+﻿namespace CorporateQnA.Core.Models.EmployeeActivities
 {
-    public class NewEmployeeAnswerActivityDto
+    public class EmployeeAnswerActivity
     {
         public int AnswerId { get; set; }
 

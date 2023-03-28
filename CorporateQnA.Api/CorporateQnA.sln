@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorporateQnA.Data.Models", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorporateQnA.Infrastructure", "..\CorporateQnA.Infrastructure\CorporateQnA.Infrastructure.csproj", "{28B1314F-8963-47E9-A33A-7FA66CA40C3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorporateQnA.Services", "..\CorporateQnA.Services\CorporateQnA.Services.csproj", "{B8B06558-334E-4C70-973C-10EDD32F8123}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorporateQnA.Services", "..\CorporateQnA.Services\CorporateQnA.Services.csproj", "{B8B06558-334E-4C70-973C-10EDD32F8123}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
