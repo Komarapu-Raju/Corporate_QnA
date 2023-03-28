@@ -21,9 +21,6 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
-
-//user2
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
