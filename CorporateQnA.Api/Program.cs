@@ -1,3 +1,4 @@
+using CorporateQnA.Core.Models.Profiles;
 using CorporateQnA.Infrastructure.DbContext;
 using CorporateQnA.Services.Implementations;
 using CorporateQnA.Services.Interfaces;
@@ -20,6 +21,11 @@ builder.Services.AddScoped<IAnswerService, AnswerService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+
+builder.Services.AddAutoMapper(options =>
+{
+    options.AddProfile<Category>();
+});
 
 var app = builder.Build();
 

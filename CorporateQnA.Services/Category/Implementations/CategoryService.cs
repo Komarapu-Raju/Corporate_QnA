@@ -1,18 +1,32 @@
-﻿using CorporateQnA.Core.Models.Categories;
+﻿using CorporateQnA.Data.Models.Category;
+using CorporateQnA.Data.Models.Category.Views;
+using CorporateQnA.Infrastructure.DbContext;
 using CorporateQnA.Services.Interfaces;
+using Dapper;
+using Dapper.Contrib.Extensions;
+using Microsoft.Data.SqlClient;
+using System.Data;
 
 namespace CorporateQnA.Services.Implementations
 {
     public class CategoryService : ICategoryService
     {
-        public void AddCategory(Category newCategory)
+        private readonly IDbConnection _db;
+
+        public CategoryService(ApplicationDbContext db)
         {
-            throw new NotImplementedException();
+            this._db = db.GetConnection();
         }
 
-        public IEnumerable<Category> GetCategories()
+        public long AddCategory(Category newCategory)
         {
-            throw new NotImplementedException();
+            return this._db.Insert(newCategory);
+        }
+
+        public IEnumerable<CategoryDetailsView> GetCategories()
+        {
+            var categoryList = this._db.GetAll<CategoryDetailsView>();
+            return categoryList;
         }
     }
 }

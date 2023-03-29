@@ -1,4 +1,5 @@
-﻿using CorporateQnA.Services.Interfaces;
+﻿using CorporateQnA.Core.Models.Answers.ViewModels;
+using CorporateQnA.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CorporateQnA.Api.Controllers
@@ -13,5 +14,7 @@ namespace CorporateQnA.Api.Controllers
         {
             this._answerServices = answerServices;
         }
+
+        
     }
 }
