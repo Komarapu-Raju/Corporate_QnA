@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CorporateQnA.Core.Models\CorporateQnA.Core.Models.csproj" />
+  </ItemGroup>
+
 </Project>

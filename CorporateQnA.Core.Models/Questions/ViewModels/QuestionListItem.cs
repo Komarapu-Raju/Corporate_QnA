@@ -12,6 +12,8 @@
 
         public string Description { get; set; }
 
+        public string CategoryName { get; set; }
+
         public int NumberOfViews { get; set; }
 
         public int NumberOfAnswers { get; set; }

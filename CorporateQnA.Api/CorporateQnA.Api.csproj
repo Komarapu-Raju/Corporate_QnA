@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CorporateQnA.Data.Models\CorporateQnA.Data.Models.csproj" />
     <ProjectReference Include="..\CorporateQnA.Services\CorporateQnA.Services.csproj" />
   </ItemGroup>
 

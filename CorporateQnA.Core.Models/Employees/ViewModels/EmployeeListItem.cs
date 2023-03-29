@@ -1,6 +1,6 @@
 ﻿namespace CorporateQnA.Core.Models.Employees.ViewModels
 {
-    public class EmployeeDto
+    public class EmployeeListItem
     {
         public int Id { get; set; }
 
