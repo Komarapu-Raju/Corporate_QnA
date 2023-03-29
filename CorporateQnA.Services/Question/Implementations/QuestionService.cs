@@ -1,23 +1,33 @@
-﻿using CorporateQnA.Core.Models.Questions;
+﻿using CorporateQnA.Data.Models.Question;
+using CorporateQnA.Data.Models.Question.Views;
+using CorporateQnA.Infrastructure.DbContext;
 using CorporateQnA.Services.Interfaces;
+using Dapper.Contrib.Extensions;
+using System.Data;
 
 namespace CorporateQnA.Services.Implementations
 {
     public class QuestionService : IQuestionService
     {
-        public void AddQuestion(Question question)
+        private readonly IDbConnection _db;
+
+        public QuestionService(ApplicationDbContext db)
         {
-            throw new NotImplementedException();
+            this._db = db.GetConnection();
+        }
+        public long AddQuestion(Question question)
+        {
+           return this._db.Insert(question);
         }
 
-        public Question GetQuestionById(int questionId)
+        public QuestionDetailsView GetQuestionById(int questionId)
         {
-            throw new NotImplementedException();
+            return this._db.Get<QuestionDetailsView>(questionId);
         }
 
-        public IEnumerable<Question> GetQuestionList()
+        public IEnumerable<QuestionDetailsView> GetQuestionList()
         {
-            throw new NotImplementedException();
+            return this._db.GetAll<QuestionDetailsView>();
         }
 
         public IEnumerable<Question> GetQuestionsAnsweredByEmployee(int employeeId)

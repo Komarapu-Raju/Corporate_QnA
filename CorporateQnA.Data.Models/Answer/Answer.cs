@@ -1,5 +1,8 @@
-﻿namespace CorporateQnA.Data.Models.Answer
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CorporateQnA.Data.Models.Answer
 {
+    [Table("Answer")]
     public class Answer
     {
         public int Id { get; set; }
@@ -9,8 +12,6 @@
         public string Description { get; set; }
 
         public int AnsweredBy { get; set; }
-
-        public DateTime AnsweredOn { get; set; }
 
         public bool IsBestSolution { get; set; }
     }

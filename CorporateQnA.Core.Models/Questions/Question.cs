@@ -1,4 +1,6 @@
-﻿namespace CorporateQnA.Core.Models.Questions
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CorporateQnA.Core.Models.Questions
 {
     public class Question
     {
@@ -6,8 +8,8 @@
 
         public string Description { get; set; }
 
-        public string Category { get; set; }
+        public int CategoryId { get; set; }
 
-        public int EmployeeId { get; set; }
+        public int CreatedBy { get; set; }
     }
 }

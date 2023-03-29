@@ -1,14 +1,15 @@
-﻿using CorporateQnA.Core.Models.Questions;
+﻿using CorporateQnA.Data.Models.Question;
+using CorporateQnA.Data.Models.Question.Views;
 
 namespace CorporateQnA.Services.Interfaces
 {
     public interface IQuestionService
     {
-        public void AddQuestion(Question question);
+        public long AddQuestion(Question question);
 
-        public Question GetQuestionById(int questionId);
+        public QuestionDetailsView GetQuestionById(int questionId);
 
-        public IEnumerable<Question> GetQuestionList();
+        public IEnumerable<QuestionDetailsView> GetQuestionList();
 
         public IEnumerable<Question> GetQuestionsAskedByEmployee(int employeeId);
 

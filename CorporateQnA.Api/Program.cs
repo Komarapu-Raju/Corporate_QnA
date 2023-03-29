@@ -25,6 +25,8 @@ builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddAutoMapper(options =>
 {
     options.AddProfile<Category>();
+    options.AddProfile<Question>();
+    options.AddProfile<Answer>();
 });
 
 var app = builder.Build();

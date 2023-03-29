@@ -1,5 +1,8 @@
-﻿namespace CorporateQnA.Data.Models.Question
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CorporateQnA.Data.Models.Question
 {
+    [Table("Question")]
     public class Question
     {
         public int Id { get; set; }
@@ -11,7 +14,5 @@
         public int CategoryId { get; set; }
 
         public int CreatedBy { get; set; }
-
-        public DateTime CreatedOn { get; set; }
     }
 }
