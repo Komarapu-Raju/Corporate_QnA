@@ -7,7 +7,7 @@ namespace CorporateQnA.Data.Models.Category
     public class Category
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Title { get; set; }
 

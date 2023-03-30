@@ -7,7 +7,7 @@ namespace CorporateQnA.Data.Models.Category.Views
     public class CategoryDetailsView
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Name { get; set; }
 

@@ -2,7 +2,7 @@
 {
     public class Employee
     {
-        public int Id;
+        public Guid Id;
 
         public string FirstName;
 
@@ -10,10 +10,10 @@
 
         public string Email;
 
-        public int DesignationId;
+        public Guid DesignationId;
 
-        public int DepartmentId;
+        public Guid DepartmentId;
 
-        public int LocationId;
+        public Guid LocationId;
     }
 }

@@ -6,6 +6,6 @@ namespace CorporateQnA.Services.Interfaces
     {
         public IEnumerable<EmployeeListItem> GetEmployeeList();
 
-        public EmployeeListItem GetEmployeeById(int id);
+        public EmployeeListItem GetEmployeeById(Guid id);
     }
 }

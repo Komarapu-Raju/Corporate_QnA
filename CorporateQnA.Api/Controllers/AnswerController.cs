@@ -20,7 +20,7 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpGet("all/{questionId}")]
-        public IEnumerable<AnswerListItem> GetAnswersByQuestionId(int questionId)
+        public IEnumerable<AnswerListItem> GetAnswersByQuestionId(Guid questionId)
         {
             var answers = this._answerServices.GetAnswersByQuestionId(questionId);
             return this._mapper.Map<IEnumerable<AnswerListItem>>(answers);

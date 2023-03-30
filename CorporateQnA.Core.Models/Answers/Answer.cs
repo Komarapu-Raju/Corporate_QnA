@@ -2,11 +2,13 @@
 {
     public class Answer
     {
+        public Guid Id { get; set; }
+
         public string Description { get; set; }
 
-        public int QuestionId { get; set; }
+        public Guid QuestionId { get; set; }
 
-        public int Answeredby { get; set; }
+        public Guid Answeredby { get; set; }
 
     }
 }

@@ -7,15 +7,15 @@ namespace CorporateQnA.Data.Models.Answer.Views
     public class AnswerDetailsView
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
-        public int QuestionId { get; set; } 
+        public Guid QuestionId { get; set; } 
 
         public string Description { get; set; }
 
         public DateTime AnsweredOn { get; set; }
 
-        public int EmployeeId { get; set; }
+        public Guid EmployeeId { get; set; }
 
         public string EmployeeName { get; set; }
 

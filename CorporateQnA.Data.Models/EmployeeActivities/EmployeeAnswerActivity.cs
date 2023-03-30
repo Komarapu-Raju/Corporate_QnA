@@ -2,11 +2,11 @@
 {
     public class EmployeeAnswerActivity
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
-        public int AnswerId { get; set; }
+        public Guid AnswerId { get; set; }
 
-        public int EmployeeId { get; set; }
+        public Guid EmployeeId { get; set; }
 
         public short VoteStatus { get; set; }
     }

@@ -7,12 +7,12 @@ namespace CorporateQnA.Services.Interfaces
     {
         public long AddQuestion(Question question);
 
-        public QuestionDetailsView GetQuestionById(int questionId);
+        public QuestionDetailsView GetQuestionById(Guid questionId);
 
         public IEnumerable<QuestionDetailsView> GetQuestionList();
 
-        public IEnumerable<Question> GetQuestionsAskedByEmployee(int employeeId);
+        public IEnumerable<Question> GetQuestionsAskedByEmployee(Guid employeeId);
 
-        public IEnumerable<Question> GetQuestionsAnsweredByEmployee(int employeeId);
+        public IEnumerable<Question> GetQuestionsAnsweredByEmployee(Guid employeeId);
     }
 }

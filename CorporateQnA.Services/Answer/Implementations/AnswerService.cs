@@ -1,5 +1,4 @@
 ﻿using CorporateQnA.Data.Models.Answer;
-using CorporateQnA.Core.Models.EmployeeActivities;
 using CorporateQnA.Data.Models.Answer.Views;
 using CorporateQnA.Infrastructure.DbContext;
 using CorporateQnA.Services.Interfaces;
@@ -21,17 +20,17 @@ namespace CorporateQnA.Services.Implementations
             return this._db.Insert(answer);
         }
 
-        public void BestSolution(Core.Models.Answers.BestSolution bestSolution)
+        public void BestSolution()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<AnswerDetailsView> GetAnswersByQuestionId(int QuestionId)
+        public IEnumerable<AnswerDetailsView> GetAnswersByQuestionId(Guid QuestionId)
         {
             return this._db.GetAll<AnswerDetailsView>().Where(item => item.QuestionId == QuestionId);
         }
 
-        public void VoteAnswer(EmployeeAnswerActivity newActivity)
+        public void VoteAnswer()
         {
             throw new NotImplementedException();
         }

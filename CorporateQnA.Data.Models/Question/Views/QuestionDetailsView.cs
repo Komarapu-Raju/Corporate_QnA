@@ -5,9 +5,9 @@ namespace CorporateQnA.Data.Models.Question.Views
     [Table("QuestionDetails")]
     public class QuestionDetailsView
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
-        public int EmployeeId { get; set; }
+        public Guid EmployeeId { get; set; }
 
         public string EmployeeName { get; set; }
 

@@ -20,7 +20,7 @@ namespace CorporateQnA.Services.Implementations
            return this._db.Insert(question);
         }
 
-        public QuestionDetailsView GetQuestionById(int questionId)
+        public QuestionDetailsView GetQuestionById(Guid questionId)
         {
             return this._db.Get<QuestionDetailsView>(questionId);
         }
@@ -30,12 +30,12 @@ namespace CorporateQnA.Services.Implementations
             return this._db.GetAll<QuestionDetailsView>();
         }
 
-        public IEnumerable<Question> GetQuestionsAnsweredByEmployee(int employeeId)
+        public IEnumerable<Question> GetQuestionsAnsweredByEmployee(Guid employeeId)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Question> GetQuestionsAskedByEmployee(int employeeId)
+        public IEnumerable<Question> GetQuestionsAskedByEmployee(Guid employeeId)
         {
             throw new NotImplementedException();
         }
