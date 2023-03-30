@@ -1,7 +1,9 @@
 ﻿using CorporateQnA.Data.Models.Answer;
 using CorporateQnA.Data.Models.Answer.Views;
+using CorporateQnA.Data.Models.EmployeeActivities;
 using CorporateQnA.Infrastructure.DbContext;
 using CorporateQnA.Services.Interfaces;
+using Dapper;
 using Dapper.Contrib.Extensions;
 using System.Data;
 
@@ -30,9 +32,18 @@ namespace CorporateQnA.Services.Implementations
             return this._db.GetAll<AnswerDetailsView>().Where(item => item.EmployeeId == employeeId);
         }
 
-        public void VoteAnswer()
+        public void VoteAnswer(EmployeeAnswerActivity answerActivity)
         {
-            throw new NotImplementedException();
+            var answer =this._db.QueryFirstOrDefault("Select * from EmployeeAnswerActivity Where EmployeeId = @employeeId and AnswerId = @answerId", new { employeeId = answerActivity.EmployeeId,answerId = answerActivity.AnswerId});
+            if (answer != null)
+            {
+                answerActivity.Id = answer.Id;
+                this._db.Update(answerActivity);
+            }
+            else
+            {
+                this._db.Insert(answerActivity);
+            }
         }
 
         public void BestSolution()

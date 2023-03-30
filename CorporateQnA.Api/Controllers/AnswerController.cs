@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CorporateQnA.Core.Models.Answers;
 using CorporateQnA.Core.Models.Answers.ViewModels;
+using CorporateQnA.Data.Models.EmployeeActivities;
 using CorporateQnA.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,6 +35,15 @@ namespace CorporateQnA.Api.Controllers
             return this._answerServices.AddAnswer(answer);
         }
 
+        [HttpPut]
+        public void VoteAnswer(Guid answerId,Guid employeeId,short voteStatus)
+        {
+            var answerActivity = new EmployeeAnswerActivity();
+            answerActivity.AnswerId = answerId;
+            answerActivity.EmployeeId = employeeId;
+            answerActivity.VoteStatus = voteStatus;
+            this._answerServices.VoteAnswer(answerActivity);
+        }
 
     }
 }
