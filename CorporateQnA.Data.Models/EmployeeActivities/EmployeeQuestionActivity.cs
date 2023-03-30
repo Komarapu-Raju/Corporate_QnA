@@ -1,7 +1,12 @@
-﻿namespace CorporateQnA.Data.Models.EmployeeActivities
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CorporateQnA.Data.Models.EmployeeActivities
 {
-    public class EmployeeQuestionActivityView
+    [Table("EmployeeQuestionActivity")]
+    public class EmployeeQuestionActivity
     {
+        [Key]
         public Guid Id { get; set; }
 
         public Guid QuestionId { get; set; }

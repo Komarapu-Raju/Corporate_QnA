@@ -1,5 +1,6 @@
 ﻿using CorporateQnA.Data.Models.Answer;
 using CorporateQnA.Data.Models.Answer.Views;
+using CorporateQnA.Data.Models.EmployeeActivities;
 
 namespace CorporateQnA.Services.Interfaces
 {
@@ -11,7 +12,7 @@ namespace CorporateQnA.Services.Interfaces
 
         public IEnumerable<AnswerDetailsView> GetAnswersByEmployeeId(Guid employeeId);
 
-        public void VoteAnswer();
+        public void VoteAnswer(EmployeeAnswerActivity answerActivity);
 
         public void BestSolution();
     }

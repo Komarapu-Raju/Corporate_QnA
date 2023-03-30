@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CorporateQnA.Core.Models.Answers;
 using CorporateQnA.Core.Models.Answers.ViewModels;
+using CorporateQnA.Data.Models.EmployeeActivities;
 using CorporateQnA.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,5 +34,7 @@ namespace CorporateQnA.Api.Controllers
             var answer = this._mapper.Map<CorporateQnA.Data.Models.Answer.Answer>(newAnswer);
             return this._answerServices.AddAnswer(answer);
         }
+
+
     }
 }
