@@ -5,7 +5,7 @@ using CorporateQnA.Services.Interfaces;
 using Dapper.Contrib.Extensions;
 using System.Data;
 
-namespace CorporateQnA.Services.Implementations
+namespace CorporateQnA.Services
 {
     public class AnswerService : IAnswerService
     {
@@ -13,21 +13,21 @@ namespace CorporateQnA.Services.Implementations
 
         public AnswerService(ApplicationDbContext db)
         {
-            this._db = db.GetConnection();
+            _db = db.GetConnection();
         }
         public long AddAnswer(Answer answer)
         {
-            return this._db.Insert(answer);
+            return _db.Insert(answer);
         }
 
         public IEnumerable<AnswerDetailsView> GetAnswersByQuestionId(Guid questionId)
         {
-            return this._db.GetAll<AnswerDetailsView>().Where(item => item.QuestionId == questionId);
+            return _db.GetAll<AnswerDetailsView>().Where(item => item.QuestionId == questionId);
         }
 
         public IEnumerable<AnswerDetailsView> GetAnswersByEmployeeId(Guid employeeId)
         {
-            return this._db.GetAll<AnswerDetailsView>().Where(item => item.EmployeeId == employeeId);
+            return _db.GetAll<AnswerDetailsView>().Where(item => item.EmployeeId == employeeId);
         }
 
         public void VoteAnswer()

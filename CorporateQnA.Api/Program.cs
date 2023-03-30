@@ -1,6 +1,6 @@
 using CorporateQnA.Core.Models.Profiles;
 using CorporateQnA.Infrastructure.DbContext;
-using CorporateQnA.Services.Implementations;
+using CorporateQnA.Services;
 using CorporateQnA.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);

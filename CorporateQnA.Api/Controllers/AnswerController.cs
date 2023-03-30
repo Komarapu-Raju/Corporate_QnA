@@ -33,7 +33,5 @@ namespace CorporateQnA.Api.Controllers
             var answer = this._mapper.Map<CorporateQnA.Data.Models.Answer.Answer>(newAnswer);
             return this._answerServices.AddAnswer(answer);
         }
-
-
     }
 }
