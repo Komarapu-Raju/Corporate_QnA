@@ -20,17 +20,22 @@ namespace CorporateQnA.Services.Implementations
             return this._db.Insert(answer);
         }
 
-        public void BestSolution()
+        public IEnumerable<AnswerDetailsView> GetAnswersByQuestionId(Guid questionId)
+        {
+            return this._db.GetAll<AnswerDetailsView>().Where(item => item.QuestionId == questionId);
+        }
+
+        public IEnumerable<AnswerDetailsView> GetAnswersByEmployeeId(Guid employeeId)
+        {
+            return this._db.GetAll<AnswerDetailsView>().Where(item => item.EmployeeId == employeeId);
+        }
+
+        public void VoteAnswer()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<AnswerDetailsView> GetAnswersByQuestionId(Guid QuestionId)
-        {
-            return this._db.GetAll<AnswerDetailsView>().Where(item => item.QuestionId == QuestionId);
-        }
-
-        public void VoteAnswer()
+        public void BestSolution()
         {
             throw new NotImplementedException();
         }

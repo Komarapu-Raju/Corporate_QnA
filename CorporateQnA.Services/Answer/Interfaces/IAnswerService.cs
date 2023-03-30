@@ -9,6 +9,8 @@ namespace CorporateQnA.Services.Interfaces
 
         public IEnumerable<AnswerDetailsView> GetAnswersByQuestionId(Guid QuestionId);
 
+        public IEnumerable<AnswerDetailsView> GetAnswersByEmployeeId(Guid employeeId);
+
         public void VoteAnswer();
 
         public void BestSolution();

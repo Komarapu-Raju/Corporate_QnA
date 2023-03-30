@@ -1,5 +1,8 @@
-﻿namespace CorporateQnA.Data.Models.Employee.Views
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CorporateQnA.Data.Models.Employee.Views
 {
+    [Table("EmployeeDetails")]
     public class EmployeeDetailsView
     {
         public Guid Id { get; set; }
@@ -12,14 +15,14 @@
 
         public string Location { get; set; }
 
-        public int QuestionsAsked { get; set; }
+        public int NumberOfQuestionsAsked { get; set; }
 
-        public int QuestionsSolved { get; set; }
+        public int NumberOfQuestionsSolved { get; set; }
 
-        public int QuestionsAnswered { get; set; }
+        public int NumberOfQuestionsAnswered { get; set; }
 
-        public int UpvotesRecieved { get; set; }
+        public int NumberOfUpVotesRecieved { get; set; }
 
-        public int DownvotesRecieved { get; set; }
+        public int NumberOfDownVotesRecieved { get; set; }
     }
 }

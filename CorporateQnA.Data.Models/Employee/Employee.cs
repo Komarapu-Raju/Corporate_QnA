@@ -1,5 +1,8 @@
-﻿namespace CorporateQnA.Data.Models.Employee
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CorporateQnA.Data.Models.Employee
 {
+    [Table("Employee")]
     public class Employee
     {
         public Guid Id;

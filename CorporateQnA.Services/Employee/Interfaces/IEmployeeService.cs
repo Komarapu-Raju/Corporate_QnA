@@ -1,11 +1,12 @@
 ﻿using CorporateQnA.Core.Models.Employees.ViewModels;
+using CorporateQnA.Data.Models.Employee.Views;
 
 namespace CorporateQnA.Services.Interfaces
 {
     public interface IEmployeeService
     {
-        public IEnumerable<EmployeeListItem> GetEmployeeList();
+        public IEnumerable<EmployeeDetailsView> GetAllEmployees();
 
-        public EmployeeListItem GetEmployeeById(Guid id);
+        public EmployeeDetailsView GetEmployeeById(Guid id);
     }
 }

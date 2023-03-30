@@ -11,9 +11,12 @@ namespace CorporateQnA.Services.Implementations
     {
         private readonly IDbConnection _db;
 
-        public QuestionService(ApplicationDbContext db)
+        private readonly IAnswerService _answerService;
+
+        public QuestionService(ApplicationDbContext db, IAnswerService _answerService)
         {
             this._db = db.GetConnection();
+            this._answerService = _answerService;
         }
         public long AddQuestion(Question question)
         {
@@ -25,19 +28,20 @@ namespace CorporateQnA.Services.Implementations
             return this._db.Get<QuestionDetailsView>(questionId);
         }
 
-        public IEnumerable<QuestionDetailsView> GetQuestionList()
+        public IEnumerable<QuestionDetailsView> GetAllQuestion()
         {
             return this._db.GetAll<QuestionDetailsView>();
         }
 
-        public IEnumerable<Question> GetQuestionsAnsweredByEmployee(Guid employeeId)
+        public IEnumerable<QuestionDetailsView> GetQuestionsAnsweredByEmployee(Guid employeeId)
         {
-            throw new NotImplementedException();
+            var answerList = this._answerService.GetAnswersByEmployeeId(employeeId);
+            return answerList.Select(answer => GetQuestionById(answer.QuestionId));
         }
 
-        public IEnumerable<Question> GetQuestionsAskedByEmployee(Guid employeeId)
+        public IEnumerable<QuestionDetailsView> GetQuestionsAskedByEmployee(Guid employeeId)
         {
-            throw new NotImplementedException();
+            return this.GetAllQuestion().Where(item => item.EmployeeId == employeeId);
         }
     }
 }

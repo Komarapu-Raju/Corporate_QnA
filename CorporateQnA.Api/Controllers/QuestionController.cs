@@ -11,9 +11,10 @@ namespace CorporateQnA.Api.Controllers
     public class QuestionController : ControllerBase
     {
         private readonly IQuestionService _questionServices;
+
         private readonly IMapper _mapper;
 
-        public QuestionController(IQuestionService questionServices,IMapper mapper)
+        public QuestionController(IQuestionService questionServices, IMapper mapper)
         {
             this._questionServices = questionServices;
             this._mapper = mapper;
@@ -29,7 +30,21 @@ namespace CorporateQnA.Api.Controllers
         [HttpGet("all")]
         public IEnumerable<QuestionListItem> GetAllQuestions()
         {
-            var questions = this._questionServices.GetQuestionList();
+            var questions = this._questionServices.GetAllQuestion();
+            return this._mapper.Map<IEnumerable<QuestionListItem>>(questions);
+        }
+
+        [HttpGet("{employeeId}")]
+        public IEnumerable<QuestionListItem> GetQuestionsAskedByEmployee(Guid employeeId)
+        {
+            var questions = this._questionServices.GetQuestionsAskedByEmployee(employeeId);
+            return this._mapper.Map<IEnumerable<QuestionListItem>>(questions);
+        }
+
+        [HttpGet("answered/{employeeId}")]
+        public IEnumerable<QuestionListItem> GetQuestionsAnsweredByEmployee(Guid employeeId)
+        {
+            var questions = this._questionServices.GetQuestionsAnsweredByEmployee(employeeId);
             return this._mapper.Map<IEnumerable<QuestionListItem>>(questions);
         }
 

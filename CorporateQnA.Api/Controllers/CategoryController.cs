@@ -11,12 +11,20 @@ namespace CorporateQnA.Api.Controllers
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryServices;
+
         private readonly IMapper _mapper;
 
-        public CategoryController(ICategoryService categoryServices,IMapper mapper)
+        public CategoryController(ICategoryService categoryServices, IMapper mapper)
         {
             this._categoryServices = categoryServices;
             this._mapper = mapper;
+        }
+
+        [HttpGet("all")]
+        public IEnumerable<CategoryListItem> GetCategoryList()
+        {
+            var categoryList = this._categoryServices.GetAllCategories();
+            return this._mapper.Map<IEnumerable<CategoryListItem>>(categoryList);
         }
 
         [HttpPost]
@@ -24,14 +32,6 @@ namespace CorporateQnA.Api.Controllers
         {
             var category = this._mapper.Map<CorporateQnA.Data.Models.Category.Category>(newCategory);
             return this._categoryServices.AddCategory(category);
-        }
-
-        [HttpGet("all")]
-        public IEnumerable<CategoryListItem> GetCategoryList()
-        {
-            var categories = this._categoryServices.GetCategories();
-            return this._mapper.Map<IEnumerable<CategoryListItem>>(categories);
-
         }
     }
 }

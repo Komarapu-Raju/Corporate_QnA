@@ -13,7 +13,7 @@ namespace CorporateQnA.Core.Models.Profiles
     {
         public Employee()
         {
-            CreateMap<EmployeeDetailsView,EmployeeListItem>();
+            CreateMap<EmployeeDetailsView,EmployeeListItem>().ReverseMap();
         }
     }
 }

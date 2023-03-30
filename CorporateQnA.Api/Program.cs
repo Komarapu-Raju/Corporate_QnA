@@ -27,6 +27,7 @@ builder.Services.AddAutoMapper(options =>
     options.AddProfile<Category>();
     options.AddProfile<Question>();
     options.AddProfile<Answer>();
+    options.AddProfile<Employee>();
 });
 
 var app = builder.Build();

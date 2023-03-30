@@ -7,6 +7,6 @@ namespace CorporateQnA.Services.Interfaces
     {
         public long AddCategory(Category newCategory);
 
-        public IEnumerable<CategoryDetailsView> GetCategories();
+        public IEnumerable<CategoryDetailsView> GetAllCategories();
     }
 }

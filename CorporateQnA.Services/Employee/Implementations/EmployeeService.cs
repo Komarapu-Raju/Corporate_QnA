@@ -1,6 +1,7 @@
-﻿using CorporateQnA.Core.Models.Employees.ViewModels;
+﻿using CorporateQnA.Data.Models.Employee.Views;
 using CorporateQnA.Infrastructure.DbContext;
 using CorporateQnA.Services.Interfaces;
+using Dapper.Contrib.Extensions;
 using System.Data;
 
 namespace CorporateQnA.Services.Implementations
@@ -13,14 +14,15 @@ namespace CorporateQnA.Services.Implementations
         {
             this._db = db.GetConnection();
         }
-        public EmployeeListItem GetEmployeeById(Guid id)
+
+        public EmployeeDetailsView GetEmployeeById(Guid id)
         {
-            throw new NotImplementedException();
+            return this._db.Get<EmployeeDetailsView>(id);
         }
 
-        public IEnumerable<EmployeeListItem> GetEmployeeList()
+        public IEnumerable<EmployeeDetailsView> GetAllEmployees()
         {
-            throw new NotImplementedException();
+            return this._db.GetAll<EmployeeDetailsView>();
         }
     }
 }

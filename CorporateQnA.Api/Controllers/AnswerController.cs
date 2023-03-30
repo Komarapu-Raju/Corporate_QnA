@@ -11,6 +11,7 @@ namespace CorporateQnA.Api.Controllers
     public class AnswerController : ControllerBase
     {
         private readonly IAnswerService _answerServices;
+
         private readonly IMapper _mapper;
 
         public AnswerController(IAnswerService answerServices, IMapper mapper)
@@ -33,6 +34,6 @@ namespace CorporateQnA.Api.Controllers
             return this._answerServices.AddAnswer(answer);
         }
 
-        
+
     }
 }

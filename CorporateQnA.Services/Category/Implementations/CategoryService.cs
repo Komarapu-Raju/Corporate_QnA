@@ -2,9 +2,7 @@
 using CorporateQnA.Data.Models.Category.Views;
 using CorporateQnA.Infrastructure.DbContext;
 using CorporateQnA.Services.Interfaces;
-using Dapper;
 using Dapper.Contrib.Extensions;
-using Microsoft.Data.SqlClient;
 using System.Data;
 
 namespace CorporateQnA.Services.Implementations
@@ -23,10 +21,9 @@ namespace CorporateQnA.Services.Implementations
             return this._db.Insert(newCategory);
         }
 
-        public IEnumerable<CategoryDetailsView> GetCategories()
+        public IEnumerable<CategoryDetailsView> GetAllCategories()
         {
-            var categoryList = this._db.GetAll<CategoryDetailsView>();
-            return categoryList;
+            return this._db.GetAll<CategoryDetailsView>();
         }
     }
 }

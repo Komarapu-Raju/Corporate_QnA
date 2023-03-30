@@ -9,10 +9,10 @@ namespace CorporateQnA.Services.Interfaces
 
         public QuestionDetailsView GetQuestionById(Guid questionId);
 
-        public IEnumerable<QuestionDetailsView> GetQuestionList();
+        public IEnumerable<QuestionDetailsView> GetAllQuestion();
 
-        public IEnumerable<Question> GetQuestionsAskedByEmployee(Guid employeeId);
+        public IEnumerable<QuestionDetailsView> GetQuestionsAskedByEmployee(Guid employeeId);
 
-        public IEnumerable<Question> GetQuestionsAnsweredByEmployee(Guid employeeId);
+        public IEnumerable<QuestionDetailsView> GetQuestionsAnsweredByEmployee(Guid employeeId);
     }
 }
