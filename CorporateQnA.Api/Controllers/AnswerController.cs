@@ -35,6 +35,10 @@ namespace CorporateQnA.Api.Controllers
             return this._answerServices.AddAnswer(answer);
         }
 
-
+        [HttpPut]
+        public void VoteAnswer(EmployeeAnswerActivity newActivity)
+        {
+            this._answerServices.VoteAnswer(newActivity);
+        }
     }
 }

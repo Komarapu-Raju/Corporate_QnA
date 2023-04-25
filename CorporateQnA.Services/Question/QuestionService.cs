@@ -18,6 +18,7 @@ namespace CorporateQnA.Services
             _db = db.GetConnection();
             this._answerService = _answerService;
         }
+
         public long AddQuestion(Question question)
         {
             return _db.Insert(question);
