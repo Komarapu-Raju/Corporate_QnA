@@ -30,6 +30,16 @@ builder.Services.AddAutoMapper(options =>
     options.AddProfile<Employee>();
 });
 
+builder.Services.AddCors(policy =>
+{
+    policy.AddPolicy("AllowAllHeaders", options =>
+    {
+        options.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -38,6 +48,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("AllowAllHeaders");
 
 app.UseHttpsRedirection();
 
