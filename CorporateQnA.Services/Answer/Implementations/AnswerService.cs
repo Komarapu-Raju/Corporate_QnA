@@ -1,6 +1,7 @@
 ﻿using CorporateQnA.Data.Models.Answer;
 using CorporateQnA.Data.Models.Answer.Views;
 using CorporateQnA.Data.Models.EmployeeActivities;
+using CorporateQnA.Data.Models.Question.Views;
 using CorporateQnA.Infrastructure.DbContext;
 using CorporateQnA.Services.Interfaces;
 using Dapper;
@@ -46,9 +47,11 @@ namespace CorporateQnA.Services.Implementations
             }
         }
 
-        public void BestSolution()
+        public void BestSolution(Guid answerId)
         {
-            throw new NotImplementedException();
+            var answer = this._db.Get<Answer>(answerId);
+            answer.IsBestSolution = !answer.IsBestSolution;
+            this._db.Update(answer);
         }
     }
 }

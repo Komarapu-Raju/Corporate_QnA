@@ -14,6 +14,6 @@ namespace CorporateQnA.Services.Interfaces
 
         public void VoteAnswer(EmployeeAnswerActivity answerActivity);
 
-        public void BestSolution();
+        public void BestSolution(Guid answerId);
     }
 }

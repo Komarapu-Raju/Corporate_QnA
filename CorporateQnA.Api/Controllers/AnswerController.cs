@@ -36,7 +36,7 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpPut]
-        public void VoteAnswer(Guid answerId,Guid employeeId,short voteStatus)
+        public void VoteAnswer(Guid answerId, Guid employeeId, short voteStatus)
         {
             var answerActivity = new EmployeeAnswerActivity();
             answerActivity.AnswerId = answerId;
@@ -45,5 +45,11 @@ namespace CorporateQnA.Api.Controllers
             this._answerServices.VoteAnswer(answerActivity);
         }
 
+        [HttpPut]
+        public void BestSolution(Guid answerId)
+        {
+            this._answerServices.BestSolution(answerId);
+        }
     }
 }
+
