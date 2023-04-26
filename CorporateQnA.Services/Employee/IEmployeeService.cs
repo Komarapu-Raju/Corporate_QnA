@@ -1,5 +1,4 @@
-﻿using CorporateQnA.Core.Models.Employees.ViewModels;
-using CorporateQnA.Data.Models.Employee.Views;
+﻿using CorporateQnA.Data.Models.Employee.Views;
 
 namespace CorporateQnA.Services.Interfaces
 {

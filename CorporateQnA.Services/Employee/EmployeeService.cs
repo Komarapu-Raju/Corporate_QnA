@@ -4,7 +4,7 @@ using CorporateQnA.Services.Interfaces;
 using Dapper.Contrib.Extensions;
 using System.Data;
 
-namespace CorporateQnA.Services.Implementations
+namespace CorporateQnA.Services
 {
     public class EmployeeService : IEmployeeService
     {
@@ -12,17 +12,17 @@ namespace CorporateQnA.Services.Implementations
 
         public EmployeeService(ApplicationDbContext db)
         {
-            this._db = db.GetConnection();
+            _db = db.GetConnection();
         }
 
         public EmployeeDetailsView GetEmployeeById(Guid id)
         {
-            return this._db.Get<EmployeeDetailsView>(id);
+            return _db.Get<EmployeeDetailsView>(id);
         }
 
         public IEnumerable<EmployeeDetailsView> GetAllEmployees()
         {
-            return this._db.GetAll<EmployeeDetailsView>();
+            return _db.GetAll<EmployeeDetailsView>();
         }
     }
 }

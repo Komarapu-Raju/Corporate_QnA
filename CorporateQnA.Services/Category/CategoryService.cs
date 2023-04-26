@@ -5,7 +5,7 @@ using CorporateQnA.Services.Interfaces;
 using Dapper.Contrib.Extensions;
 using System.Data;
 
-namespace CorporateQnA.Services.Implementations
+namespace CorporateQnA.Services
 {
     public class CategoryService : ICategoryService
     {
@@ -13,17 +13,17 @@ namespace CorporateQnA.Services.Implementations
 
         public CategoryService(ApplicationDbContext db)
         {
-            this._db = db.GetConnection();
+            _db = db.GetConnection();
         }
 
         public long AddCategory(Category newCategory)
         {
-            return this._db.Insert(newCategory);
+            return _db.Insert(newCategory);
         }
 
         public IEnumerable<CategoryDetailsView> GetAllCategories()
         {
-            return this._db.GetAll<CategoryDetailsView>();
+            return _db.GetAll<CategoryDetailsView>();
         }
     }
 }
