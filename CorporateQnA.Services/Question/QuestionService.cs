@@ -1,7 +1,9 @@
-﻿using CorporateQnA.Data.Models.Question;
+﻿using CorporateQnA.Data.Models.EmployeeActivities;
+using CorporateQnA.Data.Models.Question;
 using CorporateQnA.Data.Models.Question.Views;
 using CorporateQnA.Infrastructure.DbContext;
 using CorporateQnA.Services.Interfaces;
+using Dapper;
 using Dapper.Contrib.Extensions;
 using System.Data;
 
@@ -43,6 +45,29 @@ namespace CorporateQnA.Services
         public IEnumerable<QuestionDetailsView> GetQuestionsAskedByEmployee(Guid employeeId)
         {
             return GetAllQuestion().Where(item => item.EmployeeId == employeeId);
+        }
+
+        public void VoteQuestion(EmployeeQuestionActivity questionActivity)
+        {
+            var existingActivity = this._db.QueryFirstOrDefault("Select * from EmployeeQuestionActivity Where EmployeeId = @employeeId and QuestionId = @questionId", new { employeeId = questionActivity.EmployeeId, questionId = questionActivity.QuestionId });
+            if (existingActivity != null)
+            {
+                questionActivity.Id = existingActivity.Id;
+                this._db.Update(questionActivity);
+            }
+            else
+            {
+                this._db.Insert(questionActivity);
+            }
+        }
+
+        public void AddQuestionActivity(EmployeeQuestionActivity questionActivity)
+        {
+            var existingActivity = this._db.QueryFirstOrDefault("Select * from EmployeeQuestionActivity Where EmployeeId = @employeeId and QuestionId = @questionId", new { employeeId = questionActivity.EmployeeId, questionId = questionActivity.QuestionId });
+            if (existingActivity == null)
+            {
+                _db.Insert(questionActivity);
+            }
         }
     }
 }

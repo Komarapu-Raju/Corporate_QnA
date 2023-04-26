@@ -1,4 +1,5 @@
-﻿using CorporateQnA.Data.Models.Question;
+﻿using CorporateQnA.Data.Models.EmployeeActivities;
+using CorporateQnA.Data.Models.Question;
 using CorporateQnA.Data.Models.Question.Views;
 
 namespace CorporateQnA.Services.Interfaces
@@ -14,5 +15,9 @@ namespace CorporateQnA.Services.Interfaces
         public IEnumerable<QuestionDetailsView> GetQuestionsAskedByEmployee(Guid employeeId);
 
         public IEnumerable<QuestionDetailsView> GetQuestionsAnsweredByEmployee(Guid employeeId);
+
+        public void AddQuestionActivity(EmployeeQuestionActivity questionActivity);
+
+        public void VoteQuestion(EmployeeQuestionActivity questionActivity);
     }
 }
