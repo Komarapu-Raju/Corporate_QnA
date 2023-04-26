@@ -15,4 +15,9 @@
     <ProjectReference Include="..\CorporateQnA.Data.Models\CorporateQnA.Data.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="gowrav1\" />
+    <Folder Include="gowrav2\" />
+  </ItemGroup>
+
 </Project>
