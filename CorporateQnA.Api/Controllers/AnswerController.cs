@@ -38,6 +38,10 @@ namespace CorporateQnA.Api.Controllers
         [HttpPut]
         public void VoteAnswer(Guid answerId, Guid employeeId, short voteStatus)
         {
+            var newActivity = new EmployeeAnswerActivity();
+            newActivity.AnswerId = answerId;
+            newActivity.EmployeeId = employeeId;    
+            newActivity.VoteStatus = voteStatus;
             this._answerServices.VoteAnswer(newActivity);
         }
 
