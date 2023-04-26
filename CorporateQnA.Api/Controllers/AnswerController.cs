@@ -45,7 +45,7 @@ namespace CorporateQnA.Api.Controllers
             this._answerServices.VoteAnswer(newActivity);
         }
 
-        [HttpPut]
+        [HttpPut("bestsolution")]
         public void BestSolution(Guid answerId)
         {
             this._answerServices.BestSolution(answerId);
