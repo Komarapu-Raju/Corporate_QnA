@@ -1,7 +1,6 @@
 ﻿using CorporateQnA.Data.Models.Answer;
 using CorporateQnA.Data.Models.Answer.Views;
 using CorporateQnA.Data.Models.EmployeeActivities;
-using CorporateQnA.Data.Models.Question.Views;
 using CorporateQnA.Infrastructure.DbContext;
 using CorporateQnA.Services.Interfaces;
 using Dapper;
