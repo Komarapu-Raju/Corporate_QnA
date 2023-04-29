@@ -3,12 +3,14 @@ using CorporateQnA.Core.Models.Questions;
 using CorporateQnA.Core.Models.Questions.ViewModels;
 using CorporateQnA.Data.Models.EmployeeActivities;
 using CorporateQnA.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CorporateQnA.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]/")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public class QuestionController : ControllerBase
     {
         private readonly IQuestionService _questionServices;
@@ -56,23 +58,14 @@ namespace CorporateQnA.Api.Controllers
             return this._questionServices.AddQuestion(question);
         }
 
-        [HttpPut]
-        public void AddQuestionActivity(Guid questionId, Guid employeeId)
-        {
-            var questionActivity = new EmployeeQuestionActivity();
-            questionActivity.QuestionId = questionId;
-            questionActivity.EmployeeId = employeeId;
-            this._questionServices.AddQuestionActivity(questionActivity);
-        }
-
-        [HttpPut("vote")]
-        public void VoteQuestion(Guid questionId, Guid employeeId, short voteStatus)
+        [HttpPut("activity")]
+        public void AddQuestionActivity(Guid questionId, Guid employeeId, short voteStatus)
         {
             var questionActivity = new EmployeeQuestionActivity();
             questionActivity.QuestionId = questionId;
             questionActivity.EmployeeId = employeeId;
             questionActivity.VoteStatus = voteStatus;
-            this._questionServices.VoteQuestion(questionActivity);
+            this._questionServices.AddQuestionActivity(questionActivity);
         }
     }
 }

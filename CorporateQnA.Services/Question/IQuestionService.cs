@@ -17,7 +17,5 @@ namespace CorporateQnA.Services.Interfaces
         public IEnumerable<QuestionDetailsView> GetQuestionsAnsweredByEmployee(Guid employeeId);
 
         public void AddQuestionActivity(EmployeeQuestionActivity questionActivity);
-
-        public void VoteQuestion(EmployeeQuestionActivity questionActivity);
     }
 }

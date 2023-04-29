@@ -15,7 +15,7 @@ namespace CorporateQnA.Infrastructure.DbContext
         public ApplicationDbContext(IConfiguration configuration)
         {
             this._configuration = configuration;
-            this._connectionString = this._configuration.GetConnectionString("TeamLDBConnection");
+            this._connectionString = this._configuration.GetConnectionString("LocalDBConnection");
             this._connection = new SqlConnection(_connectionString);
         }
 

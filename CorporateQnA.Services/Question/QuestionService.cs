@@ -47,26 +47,17 @@ namespace CorporateQnA.Services
             return GetAllQuestion().Where(item => item.EmployeeId == employeeId);
         }
 
-        public void VoteQuestion(EmployeeQuestionActivity questionActivity)
+        public void AddQuestionActivity(EmployeeQuestionActivity newActivity)
         {
-            var existingActivity = this._db.QueryFirstOrDefault("Select * from EmployeeQuestionActivity Where EmployeeId = @employeeId and QuestionId = @questionId", new { employeeId = questionActivity.EmployeeId, questionId = questionActivity.QuestionId });
+            var existingActivity = this._db.QueryFirstOrDefault("Select * from EmployeeQuestionActivity Where EmployeeId = @employeeId and QuestionId = @questionId", new { employeeId = newActivity.EmployeeId, questionId = newActivity.QuestionId });
             if (existingActivity != null)
             {
-                questionActivity.Id = existingActivity.Id;
-                this._db.Update(questionActivity);
+                newActivity.Id = existingActivity.Id;
+                this._db.Update(newActivity);
             }
             else
             {
-                this._db.Insert(questionActivity);
-            }
-        }
-
-        public void AddQuestionActivity(EmployeeQuestionActivity questionActivity)
-        {
-            var existingActivity = this._db.QueryFirstOrDefault("Select * from EmployeeQuestionActivity Where EmployeeId = @employeeId and QuestionId = @questionId", new { employeeId = questionActivity.EmployeeId, questionId = questionActivity.QuestionId });
-            if (existingActivity == null)
-            {
-                _db.Insert(questionActivity);
+                this._db.Insert(newActivity);
             }
         }
     }

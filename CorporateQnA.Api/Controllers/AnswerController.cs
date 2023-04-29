@@ -3,12 +3,14 @@ using CorporateQnA.Core.Models.Answers;
 using CorporateQnA.Core.Models.Answers.ViewModels;
 using CorporateQnA.Data.Models.EmployeeActivities;
 using CorporateQnA.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CorporateQnA.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]/")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public class AnswerController : ControllerBase
     {
         private readonly IAnswerService _answerServices;
