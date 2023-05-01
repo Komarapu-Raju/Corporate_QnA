@@ -13,6 +13,8 @@ namespace CorporateQnA.Data.Models.EmployeeActivities
 
         public Guid EmployeeId { get; set; }
 
+        public DateTime ViewedOn { get; set; } = DateTime.Now;
+
         public short VoteStatus { get; set; }
     }
 }

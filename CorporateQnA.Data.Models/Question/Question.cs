@@ -14,5 +14,7 @@ namespace CorporateQnA.Data.Models.Question
         public Guid CategoryId { get; set; }
 
         public Guid CreatedBy { get; set; }
+
+        public DateTime CreatedOn { get; set; } = DateTime.Now;
     }
 }

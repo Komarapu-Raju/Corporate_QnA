@@ -13,6 +13,8 @@ namespace CorporateQnA.Data.Models.Answer
 
         public Guid AnsweredBy { get; set; }
 
+        public DateTime AnsweredOn { get; set; } = DateTime.Now;
+
         public bool IsBestSolution { get; set; }
     }
 }

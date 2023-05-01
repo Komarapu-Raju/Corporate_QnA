@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using System.Data;
 
-namespace CorporateQnA.Infrastructure.DbContext
+namespace CorporateQnA.DbContext
 {
     public class ApplicationDbContext
     {

@@ -1,7 +1,7 @@
 ﻿using CorporateQnA.Data.Models.EmployeeActivities;
 using CorporateQnA.Data.Models.Question;
 using CorporateQnA.Data.Models.Question.Views;
-using CorporateQnA.Infrastructure.DbContext;
+using CorporateQnA.DbContext;
 using CorporateQnA.Services.Interfaces;
 using Dapper;
 using Dapper.Contrib.Extensions;
@@ -15,36 +15,36 @@ namespace CorporateQnA.Services
 
         private readonly IAnswerService _answerService;
 
-        public QuestionService(ApplicationDbContext db, IAnswerService _answerService)
+        public QuestionService(ApplicationDbContext db, IAnswerService answerService)
         {
-            _db = db.GetConnection();
-            this._answerService = _answerService;
+            this._db = db.GetConnection();
+            this._answerService = answerService;
         }
 
-        public long AddQuestion(Question question)
+        public void AddQuestion(Question question)
         {
-            return _db.Insert(question);
+            this._db.Insert(question);
         }
 
         public QuestionDetailsView GetQuestionById(Guid questionId)
         {
-            return _db.Get<QuestionDetailsView>(questionId);
+            return this._db.Get<QuestionDetailsView>(questionId);
         }
 
-        public IEnumerable<QuestionDetailsView> GetAllQuestion()
+        public IEnumerable<QuestionDetailsView> GetAllQuestions()
         {
-            return _db.GetAll<QuestionDetailsView>();
+            return this._db.GetAll<QuestionDetailsView>();
+        }
+
+        public IEnumerable<QuestionDetailsView> GetQuestionsAskedByEmployee(Guid employeeId)
+        {
+            return this.GetAllQuestions().Where(item => item.EmployeeId == employeeId);
         }
 
         public IEnumerable<QuestionDetailsView> GetQuestionsAnsweredByEmployee(Guid employeeId)
         {
             var answerList = _answerService.GetAnswersByEmployeeId(employeeId);
             return answerList.Select(answer => GetQuestionById(answer.QuestionId));
-        }
-
-        public IEnumerable<QuestionDetailsView> GetQuestionsAskedByEmployee(Guid employeeId)
-        {
-            return GetAllQuestion().Where(item => item.EmployeeId == employeeId);
         }
 
         public void AddQuestionActivity(EmployeeQuestionActivity newActivity)

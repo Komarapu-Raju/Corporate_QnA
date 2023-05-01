@@ -1,22 +1,25 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CorporateQnA.Data.Models.Employee
 {
     [Table("Employee")]
     public class Employee
     {
-        public Guid Id;
+        public Guid Id { get; set; }
 
-        public string FirstName;
+        public string FirstName { get; set; }
 
-        public string? LastName;
+        public string? LastName { get; set; }
 
-        public string Email;
+        public string Email { get; set; }
 
-        public Guid DesignationId;
+        public Guid DesignationId { get; set; }
 
-        public Guid DepartmentId;
+        public Guid DepartmentId { get; set; }
 
-        public Guid LocationId;
+        public Guid LocationId { get; set; }
+
+        public Guid UserId { get; set; }
     }
 }

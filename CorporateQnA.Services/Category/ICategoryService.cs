@@ -5,8 +5,8 @@ namespace CorporateQnA.Services.Interfaces
 {
     public interface ICategoryService
     {
-        public long AddCategory(Category newCategory);
-
         public IEnumerable<CategoryDetailsView> GetAllCategories();
+
+        public void AddCategory(Category newCategory);
     }
 }

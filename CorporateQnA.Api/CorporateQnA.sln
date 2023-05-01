@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorporateQnA.Data.Models", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorporateQnA.Services", "..\CorporateQnA.Services\CorporateQnA.Services.csproj", "{B8B06558-334E-4C70-973C-10EDD32F8123}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CorporateQnA.Database", "..\CorporateQnA.Database\CorporateQnA.Database.sqlproj", "{36AC95D8-E373-4E32-B5AA-B03BBDE39BE6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,12 @@ Global
 		{B8B06558-334E-4C70-973C-10EDD32F8123}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8B06558-334E-4C70-973C-10EDD32F8123}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8B06558-334E-4C70-973C-10EDD32F8123}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36AC95D8-E373-4E32-B5AA-B03BBDE39BE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36AC95D8-E373-4E32-B5AA-B03BBDE39BE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36AC95D8-E373-4E32-B5AA-B03BBDE39BE6}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{36AC95D8-E373-4E32-B5AA-B03BBDE39BE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36AC95D8-E373-4E32-B5AA-B03BBDE39BE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36AC95D8-E373-4E32-B5AA-B03BBDE39BE6}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

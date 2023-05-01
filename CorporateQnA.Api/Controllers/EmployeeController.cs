@@ -22,7 +22,7 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpGet("all")]
-        public IEnumerable<EmployeeListItem> GetAllQuestions()
+        public IEnumerable<EmployeeListItem> GetAllEmployees()
         {
             var employeeList = this._employeeServices.GetAllEmployees();
             return this._mapper.Map<IEnumerable<EmployeeListItem>>(employeeList);

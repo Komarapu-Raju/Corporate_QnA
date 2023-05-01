@@ -1,10 +1,9 @@
-﻿using CorporateQnA.Core.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using CorporateQnA.Core.Models;
+using CorporateQnA.Data.Models.Employee;
+using CorporateQnA.Services;
+using CorporateQnA.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
 namespace CorporateQnA.Api.Controllers
 {
@@ -12,67 +11,35 @@ namespace CorporateQnA.Api.Controllers
     [Route("authorization/")]
     public class AuthController : ControllerBase
     {
-        public readonly UserManager<IdentityUser> _userManager;
+        public readonly IAuthService _authService;
 
-        public readonly IConfiguration _configuration;
-        public AuthController(UserManager<IdentityUser> userManager, IConfiguration configuration)
+        public readonly ITokenService _tokenService;
+
+        public AuthController(IAuthService authService, ITokenService tokenService)
         {
-            this._userManager = userManager;
-            _configuration = configuration;
+            this._authService = authService;
+            _tokenService = tokenService;
         }
 
         [HttpPost("register")]
         public async Task<IActionResult> RegisterUser(RegisterModel model)
         {
-            var user = await this._userManager.FindByEmailAsync(model.Email);
-            if (user != null)
-            {
-                return BadRequest("User with emailId already exists");
-            }
-            var newUser = new IdentityUser() { Email = model.Email, UserName = model.Email };
-            var result = await this._userManager.CreateAsync(newUser, model.Password);
-            if (result.Succeeded)
-            {
-                return Ok(this.GenerateToken(newUser));
-            }
-            return BadRequest("Registration failed");
+            var result = await this._authService.Register(model);
+            return Ok(result);
         }
 
-        [HttpPost]
+        [HttpPost("login")]
         public async Task<IActionResult> Login(LoginModel model)
         {
-            var user = await this._userManager.FindByEmailAsync(model.Email);
-            if (user == null)
-            {
-                return BadRequest("User doesn't exists");
-            }
-            var checkPassword = await this._userManager.CheckPasswordAsync(user, model.Password);
-            if (!checkPassword)
-            {
-                return BadRequest("Credentials doesn't match");
-            }
-
-            return Ok(this.GenerateToken(user));
+            var result = await this._authService.Login(model);
+            return Ok(result);
         }
 
-        [NonAction]
-        public string GenerateToken(IdentityUser user)
+        [HttpPost("validateToken")]
+        public bool ValidateToken(string token)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this._configuration["Jwt:key"]));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.Email, user.Email)
-            };
-
-            var token = new JwtSecurityToken(notBefore: DateTime.UtcNow,
-                            expires: DateTime.UtcNow.AddMinutes(20),
-                            claims: claims,
-                            signingCredentials: credentials
-                            );
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            var result = this._tokenService.ValidateToken(token);
+            return result;
         }
     }
 }

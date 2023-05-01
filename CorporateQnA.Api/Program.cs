@@ -1,6 +1,5 @@
 using CorporateQnA.Core.Models.Profiles;
-using CorporateQnA.Data.Models.DbContext;
-using CorporateQnA.Infrastructure.DbContext;
+using CorporateQnA.DbContext;
 using CorporateQnA.Services;
 using CorporateQnA.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -44,6 +43,10 @@ builder.Services.AddScoped<IAnswerService, AnswerService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 builder.Services.AddAutoMapper(options =>
 {

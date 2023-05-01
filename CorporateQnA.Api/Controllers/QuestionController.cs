@@ -33,32 +33,32 @@ namespace CorporateQnA.Api.Controllers
         [HttpGet("all")]
         public IEnumerable<QuestionListItem> GetAllQuestions()
         {
-            var questions = this._questionServices.GetAllQuestion();
+            var questions = this._questionServices.GetAllQuestions();
             return this._mapper.Map<IEnumerable<QuestionListItem>>(questions);
         }
 
-        [HttpGet("{employeeId}")]
-        public IEnumerable<QuestionListItem> GetQuestionsAskedByEmployee(Guid employeeId)
+        [HttpGet("askedBy/{employeeId}")]
+        public IEnumerable<QuestionListItem> GetQuestionsAskedByEmployeeId(Guid employeeId)
         {
             var questions = this._questionServices.GetQuestionsAskedByEmployee(employeeId);
             return this._mapper.Map<IEnumerable<QuestionListItem>>(questions);
         }
 
-        [HttpGet("answered/{employeeId}")]
-        public IEnumerable<QuestionListItem> GetQuestionsAnsweredByEmployee(Guid employeeId)
+        [HttpGet("answeredBy/{employeeId}")]
+        public IEnumerable<QuestionListItem> GetQuestionsAnsweredByEmployeeId(Guid employeeId)
         {
             var questions = this._questionServices.GetQuestionsAnsweredByEmployee(employeeId);
             return this._mapper.Map<IEnumerable<QuestionListItem>>(questions);
         }
 
         [HttpPost]
-        public long AddQuestion(Question newQuestion)
+        public void AddQuestion(Question newQuestion)
         {
             var question = this._mapper.Map<CorporateQnA.Data.Models.Question.Question>(newQuestion);
-            return this._questionServices.AddQuestion(question);
+            this._questionServices.AddQuestion(question);
         }
 
-        [HttpPut("activity")]
+        [HttpPut]
         public void AddQuestionActivity(Guid questionId, Guid employeeId, short voteStatus)
         {
             var questionActivity = new EmployeeQuestionActivity();

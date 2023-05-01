@@ -31,18 +31,18 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpPost]
-        public long AddAnswer(Answer newAnswer)
+        public void AddAnswer(Answer newAnswer)
         {
             var answer = this._mapper.Map<CorporateQnA.Data.Models.Answer.Answer>(newAnswer);
-            return this._answerServices.AddAnswer(answer);
+            this._answerServices.AddAnswer(answer);
         }
 
-        [HttpPut]
+        [HttpPut("vote")]
         public void VoteAnswer(Guid answerId, Guid employeeId, short voteStatus)
         {
             var newActivity = new EmployeeAnswerActivity();
             newActivity.AnswerId = answerId;
-            newActivity.EmployeeId = employeeId;    
+            newActivity.EmployeeId = employeeId;
             newActivity.VoteStatus = voteStatus;
             this._answerServices.VoteAnswer(newActivity);
         }

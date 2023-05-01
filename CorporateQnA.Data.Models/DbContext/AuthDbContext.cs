@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace CorporateQnA.Data.Models.DbContext
+namespace CorporateQnA.DbContext
 {
     public class AuthDbContext : IdentityDbContext<IdentityUser>
     {

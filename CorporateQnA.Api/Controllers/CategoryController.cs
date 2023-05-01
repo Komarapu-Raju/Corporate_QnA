@@ -30,10 +30,10 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpPost]
-        public long AddCategory(Category newCategory)
+        public void AddCategory(Category newCategory)
         {
             var category = this._mapper.Map<CorporateQnA.Data.Models.Category.Category>(newCategory);
-            return this._categoryServices.AddCategory(category);
+            this._categoryServices.AddCategory(category);
         }
     }
 }

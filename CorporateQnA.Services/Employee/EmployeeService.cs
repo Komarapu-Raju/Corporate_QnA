@@ -1,5 +1,6 @@
-﻿using CorporateQnA.Data.Models.Employee.Views;
-using CorporateQnA.Infrastructure.DbContext;
+﻿using CorporateQnA.Data.Models.Employee;
+using CorporateQnA.Data.Models.Employee.Views;
+using CorporateQnA.DbContext;
 using CorporateQnA.Services.Interfaces;
 using Dapper.Contrib.Extensions;
 using System.Data;
@@ -12,17 +13,22 @@ namespace CorporateQnA.Services
 
         public EmployeeService(ApplicationDbContext db)
         {
-            _db = db.GetConnection();
+            this._db = db.GetConnection();
         }
 
         public EmployeeDetailsView GetEmployeeById(Guid id)
         {
-            return _db.Get<EmployeeDetailsView>(id);
+            return this._db.Get<EmployeeDetailsView>(id);
         }
 
         public IEnumerable<EmployeeDetailsView> GetAllEmployees()
         {
-            return _db.GetAll<EmployeeDetailsView>();
+            return this._db.GetAll<EmployeeDetailsView>();
+        }
+
+        public void AddEmployee(Employee newEmployee)
+        {
+            this._db.Insert(newEmployee);
         }
     }
 }
