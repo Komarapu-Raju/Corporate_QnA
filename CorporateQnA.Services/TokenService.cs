@@ -26,8 +26,8 @@ namespace CorporateQnA.Services
                 new Claim(ClaimTypes.Email, user.Email)
             };
 
-            var token = new JwtSecurityToken(notBefore: DateTime.UtcNow,
-                            expires: DateTime.UtcNow.AddMinutes(2),
+            var token = new JwtSecurityToken(notBefore: DateTime.Now,
+                            expires: DateTime.Now.AddMinutes(1),
                             claims: claims,
                             signingCredentials: credentials
                             );

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CorporateQnA.Api.Migrations
 {
     [DbContext(typeof(AuthDbContext))]
-    [Migration("20230429130804_InitAuthDb")]
-    partial class InitAuthDb
+    [Migration("20230502041825_InitAuthentication")]
+    partial class InitAuthentication
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

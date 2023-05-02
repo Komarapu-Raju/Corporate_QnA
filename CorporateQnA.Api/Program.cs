@@ -31,7 +31,7 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.Services.AddDbContext<AuthDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("LocalDBConnection"), b => b.MigrationsAssembly("CorporateQnA.Api"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("TeamLDBConnection"), b => b.MigrationsAssembly("CorporateQnA.Api"));
 });
 
 builder.Services.AddScoped<ApplicationDbContext>();

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CorporateQnA.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class InitAuthDb : Migration
+    public partial class InitAuthentication : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
