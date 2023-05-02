@@ -26,5 +26,9 @@ namespace CorporateQnA.Data.Models.Question.Views
         public DateTime CreatedOn { get; set; }
 
         public int NumberOfUpVotes { get; set; }
+
+        public Guid CurrentEmployeeId { get; set; }
+
+        public short VoteStatus { get; set; }
     }
 }

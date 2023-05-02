@@ -10,7 +10,6 @@ namespace CorporateQnA.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]/")]
-    [Authorize(AuthenticationSchemes = "Bearer")]
     public class AnswerController : ControllerBase
     {
         private readonly IAnswerService _answerServices;
@@ -24,9 +23,9 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpGet("all/{questionId}")]
-        public IEnumerable<AnswerListItem> GetAnswersByQuestionId(Guid questionId)
+        public IEnumerable<AnswerListItem> GetAnswersByQuestionId(Guid questionId,Guid currentEmployeeId)
         {
-            var answers = this._answerServices.GetAnswersByQuestionId(questionId);
+            var answers = this._answerServices.GetAnswersByQuestionId(questionId,currentEmployeeId);
             return this._mapper.Map<IEnumerable<AnswerListItem>>(answers);
         }
 

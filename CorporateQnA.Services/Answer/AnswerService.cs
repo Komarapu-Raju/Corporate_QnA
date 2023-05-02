@@ -18,9 +18,9 @@ namespace CorporateQnA.Services
             this._db = db.GetConnection();
         }
 
-        public IEnumerable<AnswerDetailsView> GetAnswersByQuestionId(Guid questionId)
+        public IEnumerable<AnswerDetailsView> GetAnswersByQuestionId(Guid questionId,Guid currentEmployeeId)
         {
-            return this._db.GetAll<AnswerDetailsView>().Where(item => item.QuestionId == questionId);
+            return this._db.Query<AnswerDetailsView>("Select * from AnswerDetails Where QuestionId = @questionId and CurrentEmployeeId = @currentEmployeeId ", new { questionId = questionId , currentEmployeeId = currentEmployeeId}).ToList(); 
         }
 
         public IEnumerable<AnswerDetailsView> GetAnswersByEmployeeId(Guid employeeId)

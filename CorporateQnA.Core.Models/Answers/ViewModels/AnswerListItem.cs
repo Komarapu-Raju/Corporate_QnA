@@ -19,5 +19,7 @@
         public int NumberOfUpVotes { get; set; }
 
         public int NumberOfDownVotes { get; set; }
+
+        public short VoteStatus { get; set; }
     }
 }
