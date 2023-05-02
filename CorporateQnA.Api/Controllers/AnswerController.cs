@@ -39,12 +39,12 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpPut("vote")]
-        public void VoteAnswer(Guid answerId, Guid employeeId, string voteStatus)
+        public void VoteAnswer(Guid answerId, Guid employeeId, Vote voteStatus)
         {
             var newActivity = new EmployeeAnswerActivity();
             newActivity.AnswerId = answerId;
             newActivity.EmployeeId = employeeId;
-            newActivity.VoteStatus = (short) Enum.Parse(typeof(Vote),voteStatus);
+            newActivity.VoteStatus = (short) voteStatus;
             this._answerServices.VoteAnswer(newActivity);
         }
 

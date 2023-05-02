@@ -20,6 +20,7 @@ namespace CorporateQnA.Services
 
         public IEnumerable<AnswerDetailsView> GetAnswersByQuestionId(Guid questionId)
         {
+            
             return this._db.GetAll<AnswerDetailsView>().Where(item => item.QuestionId == questionId);
         }
 

@@ -41,7 +41,7 @@ namespace CorporateQnA.Services
             var checkPassword = await this._userManager.CheckPasswordAsync(user, model.Password);
             if (!checkPassword)
             {
-                return new response() { Status = "failed", StatusMessage = "Credentials doesn't match" };
+                return new response() { Status = "failed", StatusMessage = "Credentials didn't match" };
             }
 
             Guid activeEmployeeId = await this._db.QueryFirstOrDefaultAsync<Guid>("Select id from Employee where userId = @userId", new { userId = user.Id });
