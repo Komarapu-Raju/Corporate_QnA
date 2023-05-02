@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CorporateQnA.Core.Models.Answers;
 using CorporateQnA.Core.Models.Answers.ViewModels;
+using CorporateQnA.Core.Models.Enum;
 using CorporateQnA.Data.Models.EmployeeActivities;
 using CorporateQnA.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -37,12 +38,12 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpPut("vote")]
-        public void VoteAnswer(Guid answerId, Guid employeeId, short voteStatus)
+        public void VoteAnswer(Guid answerId, Guid employeeId, Vote voteStatus)
         {
             var newActivity = new EmployeeAnswerActivity();
             newActivity.AnswerId = answerId;
             newActivity.EmployeeId = employeeId;
-            newActivity.VoteStatus = voteStatus;
+            newActivity.VoteStatus = (short) voteStatus;
             this._answerServices.VoteAnswer(newActivity);
         }
 

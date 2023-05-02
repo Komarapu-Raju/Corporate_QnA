@@ -1,6 +1,6 @@
 ﻿namespace CorporateQnA.Core.Models.Enum
 {
-    public enum Vote
+    public enum Vote : short
     {
         None,
         Upvote,
