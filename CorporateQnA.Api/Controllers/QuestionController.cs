@@ -24,9 +24,9 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public QuestionListItem GetQuestionById(Guid id)
+        public QuestionListItem GetQuestionById(Guid id,Guid currentEmployeeId)
         {
-            var question = this._questionServices.GetQuestionById(id);
+            var question = this._questionServices.GetQuestionById(id,currentEmployeeId);
             return this._mapper.Map<QuestionListItem>(question);
         }
 
