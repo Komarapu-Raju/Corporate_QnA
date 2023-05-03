@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using CorporateQnA.Core.Models.Employees.ViewModels;
+using CorporateQnA.Data.Models;
 using CorporateQnA.Data.Models.Employee;
 using CorporateQnA.Data.Models.Employee.Views;
 using CorporateQnA.DbContext;
 using CorporateQnA.Services.Interfaces;
+using Dapper;
 using Dapper.Contrib.Extensions;
 using System.Data;
 
@@ -37,6 +39,21 @@ namespace CorporateQnA.Services
         public void AddEmployee(Employee newEmployee)
         {
             this._db.Insert(newEmployee);
+        }
+
+        public IEnumerable<LocationDropdown> GetLocations()
+        {
+            return this._db.Query<LocationDropdown>("Select * from location");
+        }
+
+        public IEnumerable<Dropdown> GetDepatments()
+        {
+            return this._db.Query<Dropdown>("Select * from department");
+        }
+
+        public IEnumerable<Dropdown> GetDesignations()
+        {
+            return this._db.Query<Dropdown>("Select * from designation");
         }
     }
 }

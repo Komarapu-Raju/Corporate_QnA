@@ -1,4 +1,5 @@
 ﻿using CorporateQnA.Core.Models.Employees.ViewModels;
+using CorporateQnA.Data.Models;
 using CorporateQnA.Data.Models.Employee;
 
 namespace CorporateQnA.Services.Interfaces
@@ -10,5 +11,12 @@ namespace CorporateQnA.Services.Interfaces
         IEnumerable<EmployeeListItem> GetAllEmployees();
 
         void AddEmployee(Employee newEmployee);
+
+        IEnumerable<LocationDropdown> GetLocations();
+
+        IEnumerable<Dropdown> GetDepatments();
+
+        IEnumerable<Dropdown> GetDesignations();
+
     }
 }
