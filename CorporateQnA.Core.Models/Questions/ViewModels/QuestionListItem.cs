@@ -23,5 +23,7 @@
         public DateTime CreatedOn { get; set; }
 
         public int NumberOfUpVotes { get; set; }
+
+        public short VoteStatus { get; set; }
     }
 }

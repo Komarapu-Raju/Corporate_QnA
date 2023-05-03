@@ -1,4 +1,5 @@
-﻿using CorporateQnA.Data.Models.EmployeeActivities;
+﻿using CorporateQnA.Data.Models.Answer.Views;
+using CorporateQnA.Data.Models.EmployeeActivities;
 using CorporateQnA.Data.Models.Question;
 using CorporateQnA.Data.Models.Question.Views;
 using CorporateQnA.DbContext;
@@ -26,25 +27,28 @@ namespace CorporateQnA.Services
             this._db.Insert(question);
         }
 
-        public QuestionDetailsView GetQuestionById(Guid questionId)
+        public QuestionDetailsView GetQuestionById(Guid questionId, Guid currentEmployeeId)
         {
-            return this._db.Get<QuestionDetailsView>(questionId);
+            return this._db.QuerySingleOrDefault<QuestionDetailsView>("Select * from QuestionDetails Where CurrentEmployeeId = @currentEmployeeId and Id = @questionId", new { currentEmployeeId = currentEmployeeId, questionId = questionId });
         }
 
-        public IEnumerable<QuestionDetailsView> GetAllQuestions()
+        public IEnumerable<QuestionDetailsView> GetAllQuestions(Guid currentEmployeeId)
         {
-            return this._db.GetAll<QuestionDetailsView>();
+            return this._db.Query<QuestionDetailsView>("Select * from QuestionDetails Where CurrentEmployeeId = @currentEmployeeId", new { currentEmployeeId = currentEmployeeId }); ;
         }
 
-        public IEnumerable<QuestionDetailsView> GetQuestionsAskedByEmployee(Guid employeeId)
+        public IEnumerable<QuestionDetailsView> GetQuestionsAskedByEmployee(Guid employeeId, Guid currentEmployeeId)
         {
-            return this.GetAllQuestions().Where(item => item.EmployeeId == employeeId);
+            return this._db.Query<QuestionDetailsView>("Select * from QuestionDetails Where CurrentEmployeeId = @currentEmployeeId and EmployeeId = @questionId", new { currentEmployeeId = currentEmployeeId, employeeId = employeeId }).ToList(); 
         }
 
-        public IEnumerable<QuestionDetailsView> GetQuestionsAnsweredByEmployee(Guid employeeId)
+        public IEnumerable<QuestionDetailsView> GetQuestionsAnsweredByEmployee(Guid employeeId, Guid currentEmployeeId)
         {
-            var answerList = _answerService.GetAnswersByEmployeeId(employeeId);
-            return answerList.Select(answer => GetQuestionById(answer.QuestionId));
+            var answerList = _answerService.GetAnswersByEmployeeId(employeeId, currentEmployeeId);
+
+            var answers = answerList.Select(answer => GetQuestionById(answer.QuestionId, currentEmployeeId)).GroupBy(question => question.Id).Select(group => group.First()).ToList();
+
+            return answers;
         }
 
         public void AddQuestionActivity(EmployeeQuestionActivity newActivity)

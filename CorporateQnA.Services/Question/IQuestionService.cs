@@ -8,13 +8,13 @@ namespace CorporateQnA.Services.Interfaces
     {
         public void AddQuestion(Question question);
 
-        public QuestionDetailsView GetQuestionById(Guid questionId);
+        public QuestionDetailsView GetQuestionById(Guid questionId, Guid currentEmployeeId);
 
-        public IEnumerable<QuestionDetailsView> GetAllQuestions();
+        public IEnumerable<QuestionDetailsView> GetAllQuestions(Guid currentEmployeeId);
 
-        public IEnumerable<QuestionDetailsView> GetQuestionsAskedByEmployee(Guid employeeId);
+        public IEnumerable<QuestionDetailsView> GetQuestionsAskedByEmployee(Guid employeeId,Guid currentEmployeeId);
 
-        public IEnumerable<QuestionDetailsView> GetQuestionsAnsweredByEmployee(Guid employeeId);
+        public IEnumerable<QuestionDetailsView> GetQuestionsAnsweredByEmployee(Guid employeeId, Guid currentEmployeeId);
 
         public void AddQuestionActivity(EmployeeQuestionActivity newActivity);
     }

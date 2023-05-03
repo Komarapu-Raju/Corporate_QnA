@@ -10,7 +10,7 @@ namespace CorporateQnA.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]/")]
-    [Authorize(AuthenticationSchemes = "Bearer")]
+    /*[Authorize(AuthenticationSchemes = "Bearer")]*/
     public class QuestionController : ControllerBase
     {
         private readonly IQuestionService _questionServices;
@@ -24,30 +24,30 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public QuestionListItem GetQuestionById(Guid id)
+        public QuestionListItem GetQuestionById(Guid id,Guid currentEmployeeId)
         {
-            var question = this._questionServices.GetQuestionById(id);
+            var question = this._questionServices.GetQuestionById(id,currentEmployeeId);
             return this._mapper.Map<QuestionListItem>(question);
         }
 
         [HttpGet("all")]
-        public IEnumerable<QuestionListItem> GetAllQuestions()
+        public IEnumerable<QuestionListItem> GetAllQuestions(Guid currentEmployeeId)
         {
-            var questions = this._questionServices.GetAllQuestions();
+            var questions = this._questionServices.GetAllQuestions(currentEmployeeId);
             return this._mapper.Map<IEnumerable<QuestionListItem>>(questions);
         }
 
         [HttpGet("askedBy/{employeeId}")]
-        public IEnumerable<QuestionListItem> GetQuestionsAskedByEmployeeId(Guid employeeId)
+        public IEnumerable<QuestionListItem> GetQuestionsAskedByEmployeeId(Guid employeeId,Guid currentEmployeeId)
         {
-            var questions = this._questionServices.GetQuestionsAskedByEmployee(employeeId);
+            var questions = this._questionServices.GetQuestionsAskedByEmployee(employeeId,currentEmployeeId);
             return this._mapper.Map<IEnumerable<QuestionListItem>>(questions);
         }
 
         [HttpGet("answeredBy/{employeeId}")]
-        public IEnumerable<QuestionListItem> GetQuestionsAnsweredByEmployeeId(Guid employeeId)
+        public IEnumerable<QuestionListItem> GetQuestionsAnsweredByEmployeeId(Guid employeeId,Guid currentEmployeeId)
         {
-            var questions = this._questionServices.GetQuestionsAnsweredByEmployee(employeeId);
+            var questions = this._questionServices.GetQuestionsAnsweredByEmployee(employeeId, currentEmployeeId);
             return this._mapper.Map<IEnumerable<QuestionListItem>>(questions);
         }
 
