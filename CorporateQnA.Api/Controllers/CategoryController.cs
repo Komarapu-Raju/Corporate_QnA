@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using CorporateQnA.Core.Models.Categories;
+﻿using CorporateQnA.Core.Models.Categories;
 using CorporateQnA.Core.Models.Categories.ViewModels;
 using CorporateQnA.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -14,26 +13,21 @@ namespace CorporateQnA.Api.Controllers
     {
         private readonly ICategoryService _categoryServices;
 
-        private readonly IMapper _mapper;
-
-        public CategoryController(ICategoryService categoryServices, IMapper mapper)
+        public CategoryController(ICategoryService categoryServices)
         {
             this._categoryServices = categoryServices;
-            this._mapper = mapper;
-        }
-
-        [HttpGet("all")]
-        public IEnumerable<CategoryListItem> GetCategoryList()
-        {
-            var categoryList = this._categoryServices.GetAllCategories();
-            return this._mapper.Map<IEnumerable<CategoryListItem>>(categoryList);
         }
 
         [HttpPost]
         public void AddCategory(Category newCategory)
         {
-            var category = this._mapper.Map<CorporateQnA.Data.Models.Category.Category>(newCategory);
-            this._categoryServices.AddCategory(category);
+            this._categoryServices.AddCategory(newCategory);
+        }
+
+        [HttpGet("all")]
+        public IEnumerable<CategoryListItem> GetCategoryList()
+        {
+            return this._categoryServices.GetAllCategories();
         }
     }
 }

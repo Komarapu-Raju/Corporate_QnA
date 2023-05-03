@@ -1,7 +1,6 @@
-﻿using AutoMapper;
+﻿using CorporateQnA.Core.Models.Enum;
 using CorporateQnA.Core.Models.Questions;
 using CorporateQnA.Core.Models.Questions.ViewModels;
-using CorporateQnA.Data.Models.EmployeeActivities;
 using CorporateQnA.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,62 +9,56 @@ namespace CorporateQnA.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]/")]
-    /*[Authorize(AuthenticationSchemes = "Bearer")]*/
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public class QuestionController : ControllerBase
     {
         private readonly IQuestionService _questionServices;
 
-        private readonly IMapper _mapper;
-
-        public QuestionController(IQuestionService questionServices, IMapper mapper)
+        public QuestionController(IQuestionService questionServices)
         {
             this._questionServices = questionServices;
-            this._mapper = mapper;
-        }
-
-        [HttpGet("{id}")]
-        public QuestionListItem GetQuestionById(Guid id,Guid currentEmployeeId)
-        {
-            var question = this._questionServices.GetQuestionById(id,currentEmployeeId);
-            return this._mapper.Map<QuestionListItem>(question);
-        }
-
-        [HttpGet("all")]
-        public IEnumerable<QuestionListItem> GetAllQuestions(Guid currentEmployeeId)
-        {
-            var questions = this._questionServices.GetAllQuestions(currentEmployeeId);
-            return this._mapper.Map<IEnumerable<QuestionListItem>>(questions);
-        }
-
-        [HttpGet("askedBy/{employeeId}")]
-        public IEnumerable<QuestionListItem> GetQuestionsAskedByEmployeeId(Guid employeeId,Guid currentEmployeeId)
-        {
-            var questions = this._questionServices.GetQuestionsAskedByEmployee(employeeId,currentEmployeeId);
-            return this._mapper.Map<IEnumerable<QuestionListItem>>(questions);
-        }
-
-        [HttpGet("answeredBy/{employeeId}")]
-        public IEnumerable<QuestionListItem> GetQuestionsAnsweredByEmployeeId(Guid employeeId,Guid currentEmployeeId)
-        {
-            var questions = this._questionServices.GetQuestionsAnsweredByEmployee(employeeId, currentEmployeeId);
-            return this._mapper.Map<IEnumerable<QuestionListItem>>(questions);
         }
 
         [HttpPost]
         public void AddQuestion(Question newQuestion)
         {
-            var question = this._mapper.Map<CorporateQnA.Data.Models.Question.Question>(newQuestion);
-            this._questionServices.AddQuestion(question);
+            this._questionServices.AddQuestion(newQuestion);
         }
 
-        [HttpPut]
-        public void AddQuestionActivity(Guid questionId, Guid employeeId, short voteStatus)
+        [HttpGet("all")]
+        public IEnumerable<QuestionListItem> GetAllQuestions(Guid currentEmployeeId)
         {
-            var questionActivity = new EmployeeQuestionActivity();
-            questionActivity.QuestionId = questionId;
-            questionActivity.EmployeeId = employeeId;
-            questionActivity.VoteStatus = voteStatus;
-            this._questionServices.AddQuestionActivity(questionActivity);
+            return this._questionServices.GetAllQuestions(currentEmployeeId);
+        }
+
+        [HttpGet("{id}")]
+        public QuestionListItem GetQuestionById(Guid id, Guid currentEmployeeId)
+        {
+            return this._questionServices.GetQuestionById(id, currentEmployeeId);
+        }
+
+        [HttpGet("asked/{employeeId}")]
+        public IEnumerable<QuestionListItem> GetQuestionsAskedByEmployeeId(Guid employeeId, Guid currentEmployeeId)
+        {
+            return this._questionServices.GetQuestionsAskedByEmployee(employeeId, currentEmployeeId);
+        }
+
+        [HttpGet("answered/{employeeId}")]
+        public IEnumerable<QuestionListItem> GetQuestionsAnsweredByEmployeeId(Guid employeeId, Guid currentEmployeeId)
+        {
+            return this._questionServices.GetQuestionsAnsweredByEmployee(employeeId, currentEmployeeId);
+        }
+
+        [HttpPut("addactivity")]
+        public long AddQuestionActivity(Guid questionId, Guid employeeId)
+        {
+            return this._questionServices.AddQuestionActivity(questionId, employeeId);
+        }
+
+        [HttpPut("vote")]
+        public void VoteQuestion(Guid questionId, Guid employeeId, Vote voteStatus)
+        {
+            this._questionServices.VoteQuestion(questionId, employeeId, voteStatus);
         }
     }
 }

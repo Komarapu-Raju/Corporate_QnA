@@ -1,12 +1,12 @@
-﻿using CorporateQnA.Data.Models.Category;
-using CorporateQnA.Data.Models.Category.Views;
+﻿using CorporateQnA.Core.Models.Categories;
+using CorporateQnA.Core.Models.Categories.ViewModels;
 
 namespace CorporateQnA.Services.Interfaces
 {
     public interface ICategoryService
     {
-        public IEnumerable<CategoryDetailsView> GetAllCategories();
+        public IEnumerable<CategoryListItem> GetAllCategories();
 
-        public void AddCategory(Category newCategory);
+        void AddCategory(Category newCategory);
     }
 }

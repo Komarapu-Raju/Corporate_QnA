@@ -1,19 +1,19 @@
-﻿using CorporateQnA.Data.Models.Answer;
-using CorporateQnA.Data.Models.Answer.Views;
-using CorporateQnA.Data.Models.EmployeeActivities;
+﻿using CorporateQnA.Core.Models.Answers;
+using CorporateQnA.Core.Models.Answers.ViewModels;
+using CorporateQnA.Core.Models.Enum;
 
 namespace CorporateQnA.Services.Interfaces
 {
     public interface IAnswerService
     {
-        public IEnumerable<AnswerDetailsView> GetAnswersByQuestionId(Guid questionId,Guid currentEmployeeId);
+        IEnumerable<AnswerListItem> GetAnswersByQuestionId(Guid questionId, Guid currentEmployeeId);
 
-        public IEnumerable<AnswerDetailsView> GetAnswersByEmployeeId(Guid employeeId,Guid currentEmployeeId);
+        IEnumerable<AnswerListItem> GetAnswersByEmployeeId(Guid employeeId, Guid currentEmployeeId);
 
-        public void AddAnswer(Answer answer);
+        void AddAnswer(Answer answer);
 
-        public void VoteAnswer(EmployeeAnswerActivity answerActivity);
+        void VoteAnswer(Guid answerId, Guid employeeId, Vote voteStatus);
 
-        public void BestSolution(Guid answerId);
+        void UpdateBestSolution(Guid answerId);
     }
 }

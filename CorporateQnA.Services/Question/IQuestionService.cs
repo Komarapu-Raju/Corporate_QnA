@@ -1,21 +1,23 @@
-﻿using CorporateQnA.Data.Models.EmployeeActivities;
-using CorporateQnA.Data.Models.Question;
-using CorporateQnA.Data.Models.Question.Views;
+﻿using CorporateQnA.Core.Models.Enum;
+using CorporateQnA.Core.Models.Questions;
+using CorporateQnA.Core.Models.Questions.ViewModels;
 
 namespace CorporateQnA.Services.Interfaces
 {
     public interface IQuestionService
     {
-        public void AddQuestion(Question question);
+        void AddQuestion(Question newQuestion);
 
-        public QuestionDetailsView GetQuestionById(Guid questionId, Guid currentEmployeeId);
+        QuestionListItem GetQuestionById(Guid questionId, Guid currentEmployeeId);
 
-        public IEnumerable<QuestionDetailsView> GetAllQuestions(Guid currentEmployeeId);
+        IEnumerable<QuestionListItem> GetAllQuestions(Guid currentEmployeeId);
 
-        public IEnumerable<QuestionDetailsView> GetQuestionsAskedByEmployee(Guid employeeId,Guid currentEmployeeId);
+        IEnumerable<QuestionListItem> GetQuestionsAskedByEmployee(Guid employeeId, Guid currentEmployeeId);
 
-        public IEnumerable<QuestionDetailsView> GetQuestionsAnsweredByEmployee(Guid employeeId, Guid currentEmployeeId);
+        IEnumerable<QuestionListItem> GetQuestionsAnsweredByEmployee(Guid employeeId, Guid currentEmployeeId);
 
-        public void AddQuestionActivity(EmployeeQuestionActivity newActivity);
+        long AddQuestionActivity(Guid questionId, Guid employeeId);
+
+        void VoteQuestion(Guid questionId, Guid employeeId, Vote voteStatus);
     }
 }

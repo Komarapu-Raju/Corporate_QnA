@@ -1,4 +1,7 @@
-﻿using CorporateQnA.Data.Models.Answer;
+﻿using AutoMapper;
+using CorporateQnA.Core.Models.Answers;
+using CorporateQnA.Core.Models.Answers.ViewModels;
+using CorporateQnA.Core.Models.Enum;
 using CorporateQnA.Data.Models.Answer.Views;
 using CorporateQnA.Data.Models.EmployeeActivities;
 using CorporateQnA.DbContext;
@@ -13,29 +16,41 @@ namespace CorporateQnA.Services
     {
         private readonly IDbConnection _db;
 
-        public AnswerService(ApplicationDbContext db)
+        private readonly IMapper _mapper;
+
+        public AnswerService(ApplicationDbContext db, IMapper mapper)
         {
             this._db = db.GetConnection();
+            this._mapper = mapper;
         }
 
-        public IEnumerable<AnswerDetailsView> GetAnswersByQuestionId(Guid questionId, Guid currentEmployeeId)
+        public IEnumerable<AnswerListItem> GetAnswersByQuestionId(Guid questionId, Guid currentEmployeeId)
         {
-            return this._db.Query<AnswerDetailsView>("Select * from AnswerDetails Where QuestionId = @questionId and CurrentEmployeeId = @currentEmployeeId ", new { questionId = questionId, currentEmployeeId = currentEmployeeId }).ToList();
+            var answers = this._db.Query<AnswerDetailsView>("Select * from AnswerDetails Where QuestionId = @questionId and CurrentEmployeeId = @currentEmployeeId ", new { questionId = questionId, currentEmployeeId = currentEmployeeId }).ToList();
+            return this._mapper.Map<IEnumerable<AnswerListItem>>(answers);
         }
 
-        public IEnumerable<AnswerDetailsView> GetAnswersByEmployeeId(Guid employeeId,Guid currentEmployeeId)
+        public IEnumerable<AnswerListItem> GetAnswersByEmployeeId(Guid employeeId, Guid currentEmployeeId)
         {
-            return this._db.Query<AnswerDetailsView>("Select * from AnswerDetails Where employeeId = @employeeId and CurrentEmployeeId = @currentEmployeeId ", new { employeeId = employeeId, currentEmployeeId = employeeId }).ToList();
+            var answers = this._db.Query<AnswerDetailsView>("Select * from AnswerDetails Where employeeId = @employeeId and CurrentEmployeeId = @currentEmployeeId ", new { employeeId = employeeId, currentEmployeeId = currentEmployeeId }).ToList();
+            return this._mapper.Map<IEnumerable<AnswerListItem>>(answers);
         }
 
-        public void AddAnswer(Answer answer)
+        public void AddAnswer(Answer newAnswer)
         {
+            var answer = this._mapper.Map<Data.Models.Answer.Answer>(newAnswer);
             this._db.Insert(answer);
         }
 
-        public void VoteAnswer(EmployeeAnswerActivity answerActivity)
+        public void VoteAnswer(Guid answerId, Guid employeeId, Vote voteStatus)
         {
-            var answer = this._db.QueryFirstOrDefault("Select * from EmployeeAnswerActivity Where EmployeeId = @employeeId and AnswerId = @answerId", new { employeeId = answerActivity.EmployeeId, answerId = answerActivity.AnswerId });
+            var answerActivity = new EmployeeAnswerActivity()
+            {
+                AnswerId = answerId,
+                EmployeeId = employeeId,
+                VoteStatus = (short)voteStatus
+            };
+            var answer = this._db.QuerySingleOrDefault("Select * from EmployeeAnswerActivity Where EmployeeId = @employeeId and AnswerId = @answerId", new { employeeId = answerActivity.EmployeeId, answerId = answerActivity.AnswerId });
             if (answer != null)
             {
                 answerActivity.Id = answer.Id;
@@ -47,9 +62,9 @@ namespace CorporateQnA.Services
             }
         }
 
-        public void BestSolution(Guid answerId)
+        public void UpdateBestSolution(Guid answerId)
         {
-            var answer = this._db.Get<Answer>(answerId);
+            var answer = this._db.Get<Data.Models.Answer.Answer>(answerId);
             answer.IsBestSolution = !answer.IsBestSolution;
             this._db.Update(answer);
         }
