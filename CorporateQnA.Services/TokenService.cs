@@ -37,7 +37,7 @@ namespace CorporateQnA.Services
             };
 
             var token = new JwtSecurityToken(notBefore: DateTime.Now,
-                            expires: DateTime.Now.AddMinutes(1),
+                            expires: DateTime.Now.AddDays(2),
                             claims: claims,
                             signingCredentials: credentials
                             );
