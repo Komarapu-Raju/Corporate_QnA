@@ -1,4 +1,5 @@
-﻿using CorporateQnA.Data.Models.EmployeeActivities;
+﻿using CorporateQnA.Data.Models.Answer.Views;
+using CorporateQnA.Data.Models.EmployeeActivities;
 using CorporateQnA.Data.Models.Question;
 using CorporateQnA.Data.Models.Question.Views;
 using CorporateQnA.DbContext;
@@ -31,17 +32,17 @@ namespace CorporateQnA.Services
             return this._db.Get<QuestionDetailsView>(questionId);
         }
 
-        public IEnumerable<QuestionDetailsView> GetAllQuestions()
+        public IEnumerable<QuestionDetailsView> GetAllQuestions(Guid currentEmployeeId)
         {
-            return this._db.GetAll<QuestionDetailsView>();
+            return this._db.Query<QuestionDetailsView>("GetQuestionDetails", new { employeeId = currentEmployeeId}, commandType: CommandType.StoredProcedure).ToList();
         }
 
-        public IEnumerable<QuestionDetailsView> GetQuestionsAskedByEmployee(Guid employeeId)
+        public IEnumerable<QuestionDetailsView> GetQuestionsAskedByEmployee(Guid employeeId,Guid currentEmployeeId)
         {
-            return this.GetAllQuestions().Where(item => item.EmployeeId == employeeId);
+            return this.GetAllQuestions(currentEmployeeId).Where(item => item.EmployeeId == employeeId);
         }
 
-        public IEnumerable<QuestionDetailsView> GetQuestionsAnsweredByEmployee(Guid employeeId)
+        public IEnumerable<QuestionDetailsView> GetQuestionsAnsweredByEmployee(Guid employeeId,Guid currentEmployeeId)
         {
             var answerList = _answerService.GetAnswersByEmployeeId(employeeId);
             return answerList.Select(answer => GetQuestionById(answer.QuestionId));
