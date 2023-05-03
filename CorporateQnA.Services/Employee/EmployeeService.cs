@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CorporateQnA.Core.Models.Employees.ViewModels;
+using CorporateQnA.Data.Models.Employee;
 using CorporateQnA.Data.Models.Employee.Views;
 using CorporateQnA.DbContext;
 using CorporateQnA.Services.Interfaces;
@@ -8,6 +9,7 @@ using System.Data;
 
 namespace CorporateQnA.Services
 {
+
     public class EmployeeService : IEmployeeService
     {
         private readonly IDbConnection _db;
@@ -30,6 +32,11 @@ namespace CorporateQnA.Services
         {
             var employeeList = this._db.GetAll<EmployeeDetailsView>();
             return this._mapper.Map<IEnumerable<EmployeeListItem>>(employeeList);
+        }
+
+        public void AddEmployee(Employee newEmployee)
+        {
+            this._db.Insert(newEmployee);
         }
     }
 }
