@@ -40,12 +40,12 @@ namespace CorporateQnA.Services
             this._db.Insert(answer);
         }
 
-        public void VoteAnswer(Guid answerId, Guid employeeId, Vote voteStatus)
+        public void VoteAnswer(Guid answerId, Vote voteStatus)
         {
             var answerActivity = new EmployeeAnswerActivity()
             {
                 AnswerId = answerId,
-                EmployeeId = employeeId,
+                EmployeeId = this._userContext.Id,
                 VoteStatus = (short)voteStatus
             };
             var answer = this._db.QuerySingleOrDefault("Select * from EmployeeAnswerActivity Where EmployeeId = @employeeId and AnswerId = @answerId", new { employeeId = answerActivity.EmployeeId, answerId = answerActivity.AnswerId });

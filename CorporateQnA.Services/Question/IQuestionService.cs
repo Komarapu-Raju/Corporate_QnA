@@ -16,8 +16,8 @@ namespace CorporateQnA.Services.Interfaces
 
         IEnumerable<QuestionListItem> GetQuestionsAnsweredByEmployee(Guid employeeId);
 
-        long AddQuestionActivity(Guid questionId, Guid employeeId);
+        long AddQuestionActivity(Guid questionId);
 
-        void VoteQuestion(Guid questionId, Guid employeeId, Vote voteStatus);
+        void VoteQuestion(Guid questionId, Vote voteStatus);
     }
 }

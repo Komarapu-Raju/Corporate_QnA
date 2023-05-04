@@ -50,15 +50,15 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpPut("addactivity")]
-        public long AddQuestionActivity(Guid questionId, Guid employeeId)
+        public long AddQuestionActivity(Guid questionId)
         {
-            return this._questionServices.AddQuestionActivity(questionId, employeeId);
+            return this._questionServices.AddQuestionActivity(questionId);
         }
 
         [HttpPut("vote")]
-        public void VoteQuestion(Guid questionId, Guid employeeId, Vote voteStatus)
+        public void VoteQuestion(Guid questionId, Vote voteStatus)
         {
-            this._questionServices.VoteQuestion(questionId, employeeId, voteStatus);
+            this._questionServices.VoteQuestion(questionId, voteStatus);
         }
     }
 }

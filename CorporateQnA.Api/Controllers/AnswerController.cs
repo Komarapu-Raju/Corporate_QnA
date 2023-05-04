@@ -32,9 +32,9 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpPut("vote")]
-        public void VoteAnswer(Guid answerId, Guid employeeId, Vote voteStatus)
+        public void VoteAnswer(Guid answerId, Vote voteStatus)
         {
-            this._answerServices.VoteAnswer(answerId, employeeId, voteStatus);
+            this._answerServices.VoteAnswer(answerId, voteStatus);
         }
 
         [HttpPut("updatebestsolution")]

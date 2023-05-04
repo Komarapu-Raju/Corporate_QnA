@@ -10,7 +10,7 @@ namespace CorporateQnA.Services.Interfaces
 
         void AddAnswer(Answer answer);
 
-        void VoteAnswer(Guid answerId, Guid employeeId, Vote voteStatus);
+        void VoteAnswer(Guid answerId, Vote voteStatus);
 
         void UpdateBestSolution(Guid answerId);
     }

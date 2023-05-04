@@ -59,12 +59,12 @@ namespace CorporateQnA.Services
             return answers;
         }
 
-        public long AddQuestionActivity(Guid questionId, Guid employeeId)
+        public long AddQuestionActivity(Guid questionId)
         {
             var newActivity = new EmployeeQuestionActivity()
             {
                 QuestionId = questionId,
-                EmployeeId = employeeId,
+                EmployeeId = this._userContext.Id,
                 ViewedOn = DateTime.Now
             };
 
@@ -85,13 +85,13 @@ namespace CorporateQnA.Services
             return updatedViewCount;
         }
 
-        public void VoteQuestion(Guid questionId, Guid employeeId, Vote voteStatus)
+        public void VoteQuestion(Guid questionId, Vote voteStatus)
         {
             var newActivity = new EmployeeQuestionActivity()
             {
                 QuestionId = questionId,
-                EmployeeId = employeeId,
-                VoteStatus = (short)voteStatus,
+                EmployeeId = this._userContext.Id,
+                VoteStatus = (short)voteStatus
             };
 
             var existingActivity = this._db.QuerySingleOrDefault("Select * from EmployeeQuestionActivity Where EmployeeId = @employeeId and QuestionId = @questionId", new { employeeId = newActivity.EmployeeId, questionId = newActivity.QuestionId });
