@@ -28,10 +28,12 @@ namespace CorporateQnA.Services
             this._userContext = userContext;
         }
 
-        public void AddQuestion(Question newQuestion)
-        {
+        public QuestionListItem AddQuestion(Question newQuestion)
+        {   
             var question = this._mapper.Map<Data.Models.Question.Question>(newQuestion);
-            this._db.Insert(question);
+            var query = "insert into question (title , description, categoryid, createdby) output inserted.id values (@title , @description, @categoryid, @createdby)";
+            var newlyAddedQuestionId = this._db.ExecuteScalar<Guid>(query, new { title = question.Title, description = question.Description, categoryid = question.CategoryId, createdby = question.CreatedBy });
+            return this.GetQuestionById(newlyAddedQuestionId);
         }
 
         public QuestionListItem GetQuestionById(Guid questionId)

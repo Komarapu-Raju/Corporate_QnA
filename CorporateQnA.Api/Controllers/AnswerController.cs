@@ -20,9 +20,9 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpPost]
-        public void AddAnswer(Answer newAnswer)
+        public AnswerListItem AddAnswer(Answer newAnswer)
         {
-            this._answerServices.AddAnswer(newAnswer);
+            return this._answerServices.AddAnswer(newAnswer);
         }
 
         [HttpGet("all/{questionId}")]

@@ -6,7 +6,7 @@ namespace CorporateQnA.Services.Interfaces
 {
     public interface IQuestionService
     {
-        void AddQuestion(Question newQuestion);
+        QuestionListItem AddQuestion(Question newQuestion);
 
         QuestionListItem GetQuestionById(Guid questionId);
 

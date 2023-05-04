@@ -7,6 +7,8 @@ namespace CorporateQnA.Services.Interfaces
     {
         public IEnumerable<CategoryListItem> GetAllCategories();
 
-        void AddCategory(Category newCategory);
+        CategoryListItem AddCategory(Category newCategory);
+
+        CategoryListItem GetCategoryById(Guid id);
     }
 }

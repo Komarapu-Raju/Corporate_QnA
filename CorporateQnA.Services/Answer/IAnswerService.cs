@@ -8,7 +8,9 @@ namespace CorporateQnA.Services.Interfaces
     {
         IEnumerable<AnswerListItem> GetAnswersByQuestionId(Guid questionId);
 
-        void AddAnswer(Answer answer);
+        AnswerListItem AddAnswer(Answer answer);
+
+        AnswerListItem GetAnswerById(Guid id);
 
         void VoteAnswer(Guid answerId, Vote voteStatus);
 

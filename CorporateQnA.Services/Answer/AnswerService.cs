@@ -2,9 +2,11 @@
 using CorporateQnA.Core.Models.Answers;
 using CorporateQnA.Core.Models.Answers.ViewModels;
 using CorporateQnA.Core.Models.Enum;
+using CorporateQnA.Core.Models.Questions.ViewModels;
 using CorporateQnA.Core.Models.UserContext;
 using CorporateQnA.Data.Models.Answer.Views;
 using CorporateQnA.Data.Models.EmployeeActivities;
+using CorporateQnA.Data.Models.Question.Views;
 using CorporateQnA.DbContext;
 using CorporateQnA.Services.Interfaces;
 using Dapper;
@@ -21,7 +23,7 @@ namespace CorporateQnA.Services
 
         private readonly UserContext _userContext;
 
-        public AnswerService(ApplicationDbContext db, IMapper mapper,UserContext userContext)
+        public AnswerService(ApplicationDbContext db, IMapper mapper, UserContext userContext)
         {
             this._db = db.GetConnection();
             this._mapper = mapper;
@@ -34,10 +36,18 @@ namespace CorporateQnA.Services
             return this._mapper.Map<IEnumerable<AnswerListItem>>(answers);
         }
 
-        public void AddAnswer(Answer newAnswer)
+        public AnswerListItem AddAnswer(Answer newAnswer)
         {
             var answer = this._mapper.Map<Data.Models.Answer.Answer>(newAnswer);
-            this._db.Insert(answer);
+            var query = "insert into Answer (questionId, description, answeredBy) output inserted.id values (@questionId, @description, @answeredBy)";
+            var newlyAddedAnswerId = this._db.ExecuteScalar<Guid>(query, new { questionId = answer.QuestionId, description = answer.Description, answeredBy = answer.AnsweredBy });
+            return this.GetAnswerById(newlyAddedAnswerId);
+        }
+
+        public AnswerListItem GetAnswerById(Guid id)
+        {
+            var answer = this._db.QuerySingleOrDefault<AnswerDetailsView>("Select * from AnswerDetails Where CurrentEmployeeId = @currentEmployeeId and Id = @answerId", new { currentEmployeeId = this._userContext.Id, answerId = id });
+            return this._mapper.Map<AnswerListItem>(answer);
         }
 
         public void VoteAnswer(Guid answerId, Vote voteStatus)

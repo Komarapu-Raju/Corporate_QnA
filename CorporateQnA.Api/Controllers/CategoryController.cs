@@ -19,9 +19,9 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpPost]
-        public void AddCategory(Category newCategory)
+        public CategoryListItem AddCategory(Category newCategory)
         {
-            this._categoryServices.AddCategory(newCategory);
+            return this._categoryServices.AddCategory(newCategory);
         }
 
         [HttpGet("all")]
