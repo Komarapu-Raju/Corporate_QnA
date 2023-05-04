@@ -26,39 +26,39 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpGet("all")]
-        public IEnumerable<QuestionListItem> GetAllQuestions(Guid currentEmployeeId)
+        public IEnumerable<QuestionListItem> GetAllQuestions()
         {
-            return this._questionServices.GetAllQuestions(currentEmployeeId);
+            return this._questionServices.GetAllQuestions();
         }
 
         [HttpGet("{id}")]
-        public QuestionListItem GetQuestionById(Guid id, Guid currentEmployeeId)
+        public QuestionListItem GetQuestionById(Guid id)
         {
-            return this._questionServices.GetQuestionById(id, currentEmployeeId);
+            return this._questionServices.GetQuestionById(id);
         }
 
         [HttpGet("asked/{employeeId}")]
-        public IEnumerable<QuestionListItem> GetQuestionsAskedByEmployeeId(Guid employeeId, Guid currentEmployeeId)
+        public IEnumerable<QuestionListItem> GetQuestionsAskedByEmployeeId(Guid employeeId)
         {
-            return this._questionServices.GetQuestionsAskedByEmployee(employeeId, currentEmployeeId);
+            return this._questionServices.GetQuestionsAskedByEmployee(employeeId);
         }
 
         [HttpGet("answered/{employeeId}")]
-        public IEnumerable<QuestionListItem> GetQuestionsAnsweredByEmployeeId(Guid employeeId, Guid currentEmployeeId)
+        public IEnumerable<QuestionListItem> GetQuestionsAnsweredByEmployeeId(Guid employeeId)
         {
-            return this._questionServices.GetQuestionsAnsweredByEmployee(employeeId, currentEmployeeId);
+            return this._questionServices.GetQuestionsAnsweredByEmployee(employeeId);
         }
 
         [HttpPut("addactivity")]
-        public long AddQuestionActivity(Guid questionId, Guid employeeId)
+        public long AddQuestionActivity(Guid questionId)
         {
-            return this._questionServices.AddQuestionActivity(questionId, employeeId);
+            return this._questionServices.AddQuestionActivity(questionId);
         }
 
         [HttpPut("vote")]
-        public void VoteQuestion(Guid questionId, Guid employeeId, Vote voteStatus)
+        public void VoteQuestion(Guid questionId, Vote voteStatus)
         {
-            this._questionServices.VoteQuestion(questionId, employeeId, voteStatus);
+            this._questionServices.VoteQuestion(questionId, voteStatus);
         }
     }
 }

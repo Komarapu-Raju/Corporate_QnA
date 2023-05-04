@@ -6,13 +6,11 @@ namespace CorporateQnA.Services.Interfaces
 {
     public interface IAnswerService
     {
-        IEnumerable<AnswerListItem> GetAnswersByQuestionId(Guid questionId, Guid currentEmployeeId);
-
-        IEnumerable<AnswerListItem> GetAnswersByEmployeeId(Guid employeeId, Guid currentEmployeeId);
+        IEnumerable<AnswerListItem> GetAnswersByQuestionId(Guid questionId);
 
         void AddAnswer(Answer answer);
 
-        void VoteAnswer(Guid answerId, Guid employeeId, Vote voteStatus);
+        void VoteAnswer(Guid answerId, Vote voteStatus);
 
         void UpdateBestSolution(Guid answerId);
     }

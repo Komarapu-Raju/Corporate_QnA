@@ -8,16 +8,16 @@ namespace CorporateQnA.Services.Interfaces
     {
         void AddQuestion(Question newQuestion);
 
-        QuestionListItem GetQuestionById(Guid questionId, Guid currentEmployeeId);
+        QuestionListItem GetQuestionById(Guid questionId);
 
-        IEnumerable<QuestionListItem> GetAllQuestions(Guid currentEmployeeId);
+        IEnumerable<QuestionListItem> GetAllQuestions();
 
-        IEnumerable<QuestionListItem> GetQuestionsAskedByEmployee(Guid employeeId, Guid currentEmployeeId);
+        IEnumerable<QuestionListItem> GetQuestionsAskedByEmployee(Guid employeeId);
 
-        IEnumerable<QuestionListItem> GetQuestionsAnsweredByEmployee(Guid employeeId, Guid currentEmployeeId);
+        IEnumerable<QuestionListItem> GetQuestionsAnsweredByEmployee(Guid employeeId);
 
-        long AddQuestionActivity(Guid questionId, Guid employeeId);
+        long AddQuestionActivity(Guid questionId);
 
-        void VoteQuestion(Guid questionId, Guid employeeId, Vote voteStatus);
+        void VoteQuestion(Guid questionId, Vote voteStatus);
     }
 }

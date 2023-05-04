@@ -26,15 +26,15 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpGet("all/{questionId}")]
-        public IEnumerable<AnswerListItem> GetAnswersByQuestionId(Guid questionId, Guid currentEmployeeId)
+        public IEnumerable<AnswerListItem> GetAnswersByQuestionId(Guid questionId)
         {
-            return this._answerServices.GetAnswersByQuestionId(questionId, currentEmployeeId); ;
+            return this._answerServices.GetAnswersByQuestionId(questionId);
         }
 
         [HttpPut("vote")]
-        public void VoteAnswer(Guid answerId, Guid employeeId, Vote voteStatus)
+        public void VoteAnswer(Guid answerId, Vote voteStatus)
         {
-            this._answerServices.VoteAnswer(answerId, employeeId, voteStatus);
+            this._answerServices.VoteAnswer(answerId, voteStatus);
         }
 
         [HttpPut("updatebestsolution")]
