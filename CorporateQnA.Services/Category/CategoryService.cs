@@ -29,12 +29,11 @@ namespace CorporateQnA.Services
             return this._mapper.Map<IEnumerable<CategoryListItem>>(categoryList);
         }
 
-        public CategoryListItem AddCategory(Category newCategory)
+        public Guid AddCategory(Category newCategory)
         {
             var category = this._mapper.Map<CorporateQnA.Data.Models.Category.Category>(newCategory);
             var query = "insert into Category (title, description) output inserted.id values (@title, @description)";
-            var newlyAddedCategoryId = this._db.ExecuteScalar<Guid>(query, new { title = category.Title, description = category.Description });
-            return this.GetCategoryById(newlyAddedCategoryId);
+            return this._db.ExecuteScalar<Guid>(query, new { title = category.Title, description = category.Description });
         }
 
         public CategoryListItem GetCategoryById(Guid id)

@@ -19,7 +19,7 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpPost]
-        public CategoryListItem AddCategory(Category newCategory)
+        public Guid AddCategory(Category newCategory)
         {
             return this._categoryServices.AddCategory(newCategory);
         }
@@ -28,6 +28,12 @@ namespace CorporateQnA.Api.Controllers
         public IEnumerable<CategoryListItem> GetCategoryList()
         {
             return this._categoryServices.GetAllCategories();
+        }
+
+        [HttpGet("{id}")]
+        public CategoryListItem GetCategoryById(Guid id)
+        {
+            return this._categoryServices.GetCategoryById(id);
         }
     }
 }

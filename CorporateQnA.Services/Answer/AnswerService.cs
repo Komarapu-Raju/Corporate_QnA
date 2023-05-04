@@ -36,12 +36,11 @@ namespace CorporateQnA.Services
             return this._mapper.Map<IEnumerable<AnswerListItem>>(answers);
         }
 
-        public AnswerListItem AddAnswer(Answer newAnswer)
+        public Guid AddAnswer(Answer newAnswer)
         {
             var answer = this._mapper.Map<Data.Models.Answer.Answer>(newAnswer);
             var query = "insert into Answer (questionId, description, answeredBy) output inserted.id values (@questionId, @description, @answeredBy)";
-            var newlyAddedAnswerId = this._db.ExecuteScalar<Guid>(query, new { questionId = answer.QuestionId, description = answer.Description, answeredBy = answer.AnsweredBy });
-            return this.GetAnswerById(newlyAddedAnswerId);
+            return this._db.ExecuteScalar<Guid>(query, new { questionId = answer.QuestionId, description = answer.Description, answeredBy = answer.AnsweredBy });
         }
 
         public AnswerListItem GetAnswerById(Guid id)

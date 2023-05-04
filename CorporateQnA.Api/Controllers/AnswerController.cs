@@ -20,7 +20,7 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpPost]
-        public AnswerListItem AddAnswer(Answer newAnswer)
+        public Guid AddAnswer(Answer newAnswer)
         {
             return this._answerServices.AddAnswer(newAnswer);
         }
@@ -29,6 +29,12 @@ namespace CorporateQnA.Api.Controllers
         public IEnumerable<AnswerListItem> GetAnswersByQuestionId(Guid questionId)
         {
             return this._answerServices.GetAnswersByQuestionId(questionId);
+        }
+
+        [HttpGet("{id}")]
+        public AnswerListItem GetAnswerBYId(Guid id)
+        {
+            return this._answerServices.GetAnswerById(id);
         }
 
         [HttpPut("vote")]

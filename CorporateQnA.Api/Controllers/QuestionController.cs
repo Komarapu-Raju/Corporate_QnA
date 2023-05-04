@@ -20,7 +20,7 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpPost]
-        public QuestionListItem AddQuestion(Question newQuestion)
+        public Guid AddQuestion(Question newQuestion)
         {
             return this._questionServices.AddQuestion(newQuestion);
         }
