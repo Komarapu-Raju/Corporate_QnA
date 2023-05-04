@@ -31,8 +31,8 @@ namespace CorporateQnA.Services
         public Guid AddQuestion(Question newQuestion)
         {   
             var question = this._mapper.Map<Data.Models.Question.Question>(newQuestion);
-            var query = "insert into question (title , description, categoryid, createdby) output inserted.id values (@title , @description, @categoryid, @createdby)";
-            return this._db.ExecuteScalar<Guid>(query, new { title = question.Title, description = question.Description, categoryid = question.CategoryId, createdby = question.CreatedBy });
+            var query = "insert into question (title , description, categoryid, createdby, createdOn) output inserted.id values (@title , @description, @categoryid, @createdby, @createdOn)";
+            return this._db.ExecuteScalar<Guid>(query, new { title = question.Title, description = question.Description, categoryid = question.CategoryId, createdby = question.CreatedBy, createdOn = question.CreatedOn });
         }
 
         public QuestionListItem GetQuestionById(Guid questionId)
