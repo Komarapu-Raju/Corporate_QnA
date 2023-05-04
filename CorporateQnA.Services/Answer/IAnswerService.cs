@@ -6,9 +6,7 @@ namespace CorporateQnA.Services.Interfaces
 {
     public interface IAnswerService
     {
-        IEnumerable<AnswerListItem> GetAnswersByQuestionId(Guid questionId, Guid currentEmployeeId);
-
-        IEnumerable<AnswerListItem> GetAnswersByEmployeeId(Guid employeeId, Guid currentEmployeeId);
+        IEnumerable<AnswerListItem> GetAnswersByQuestionId(Guid questionId);
 
         void AddAnswer(Answer answer);
 

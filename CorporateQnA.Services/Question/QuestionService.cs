@@ -2,6 +2,7 @@
 using CorporateQnA.Core.Models.Enum;
 using CorporateQnA.Core.Models.Questions;
 using CorporateQnA.Core.Models.Questions.ViewModels;
+using CorporateQnA.Core.Models.UserContext;
 using CorporateQnA.Data.Models.EmployeeActivities;
 using CorporateQnA.Data.Models.Question.Views;
 using CorporateQnA.DbContext;
@@ -18,13 +19,13 @@ namespace CorporateQnA.Services
 
         public readonly IMapper _mapper;
 
-        private readonly IAnswerService _answerService;
+        private readonly UserContext _userContext;
 
-        public QuestionService(ApplicationDbContext db, IMapper mapper, IAnswerService answerService)
+        public QuestionService(ApplicationDbContext db, IMapper mapper , UserContext userContext)
         {
             this._db = db.GetConnection();
             this._mapper = mapper;
-            this._answerService = answerService;
+            this._userContext = userContext;
         }
 
         public void AddQuestion(Question newQuestion)
@@ -33,28 +34,28 @@ namespace CorporateQnA.Services
             this._db.Insert(question);
         }
 
-        public QuestionListItem GetQuestionById(Guid questionId, Guid currentEmployeeId)
+        public QuestionListItem GetQuestionById(Guid questionId)
         {
-            var question = this._db.QuerySingleOrDefault<QuestionDetailsView>("Select * from QuestionDetails Where CurrentEmployeeId = @currentEmployeeId and Id = @questionId", new { currentEmployeeId = currentEmployeeId, questionId = questionId });
+            var question = this._db.QuerySingleOrDefault<QuestionDetailsView>("Select * from QuestionDetails Where CurrentEmployeeId = @currentEmployeeId and Id = @questionId", new { currentEmployeeId = this._userContext.Id, questionId = questionId });
             return this._mapper.Map<QuestionListItem>(question);
         }
 
-        public IEnumerable<QuestionListItem> GetAllQuestions(Guid currentEmployeeId)
+        public IEnumerable<QuestionListItem> GetAllQuestions()
         {
-            var questions = this._db.Query<QuestionDetailsView>("Select * from QuestionDetails Where CurrentEmployeeId = @currentEmployeeId", new { currentEmployeeId = currentEmployeeId });
+            var questions = this._db.Query<QuestionDetailsView>("Select * from QuestionDetails Where CurrentEmployeeId = @currentEmployeeId", new { currentEmployeeId = this._userContext.Id });
             return this._mapper.Map<IEnumerable<QuestionListItem>>(questions);
         }
 
-        public IEnumerable<QuestionListItem> GetQuestionsAskedByEmployee(Guid employeeId, Guid currentEmployeeId)
+        public IEnumerable<QuestionListItem> GetQuestionsAskedByEmployee(Guid employeeId)
         {
-            var questions = this._db.Query<QuestionDetailsView>("Select * from QuestionDetails Where CurrentEmployeeId = @currentEmployeeId and EmployeeId = @employeeId", new { currentEmployeeId = currentEmployeeId, employeeId = employeeId }).ToList();
+            var questions = this._db.Query<QuestionDetailsView>("Select * from QuestionDetails Where CurrentEmployeeId = @currentEmployeeId and EmployeeId = @employeeId", new { currentEmployeeId = this._userContext.Id, employeeId = employeeId }).ToList();
             return this._mapper.Map<IEnumerable<QuestionListItem>>(questions);
         }
 
-        public IEnumerable<QuestionListItem> GetQuestionsAnsweredByEmployee(Guid employeeId, Guid currentEmployeeId)
+        public IEnumerable<QuestionListItem> GetQuestionsAnsweredByEmployee(Guid employeeId)
         {
             var questionIdList = this._db.Query<Guid>("Select DISTINCT QuestionId from Answer Where AnsweredBy = @EmployeeId", new { EmployeeId = employeeId }).ToList();
-            var answers = questionIdList.Select(questionId => GetQuestionById(questionId, currentEmployeeId));
+            var answers = questionIdList.Select(questionId => GetQuestionById(questionId));
             return answers;
         }
 

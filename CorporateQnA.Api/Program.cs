@@ -1,5 +1,7 @@
 using CorporateQnA.Core.Models.Profiles;
+using CorporateQnA.Core.Models.UserContext;
 using CorporateQnA.DbContext;
+using CorporateQnA.Middleware;
 using CorporateQnA.Services;
 using CorporateQnA.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -47,6 +49,10 @@ builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddScoped<ITokenService, TokenService>();
+
+builder.Services.AddScoped<UserContext>();
+
+builder.Services.AddTransient<TokenToUserIdMiddleware>();
 
 builder.Services.AddAutoMapper(options =>
 {
@@ -99,6 +105,8 @@ app.UseCors("AllowAllHeaders");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<TokenToUserIdMiddleware>();
 
 app.MapControllers();
 

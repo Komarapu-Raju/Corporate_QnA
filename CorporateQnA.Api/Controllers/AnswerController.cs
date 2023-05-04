@@ -26,9 +26,9 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpGet("all/{questionId}")]
-        public IEnumerable<AnswerListItem> GetAnswersByQuestionId(Guid questionId, Guid currentEmployeeId)
+        public IEnumerable<AnswerListItem> GetAnswersByQuestionId(Guid questionId)
         {
-            return this._answerServices.GetAnswersByQuestionId(questionId, currentEmployeeId); ;
+            return this._answerServices.GetAnswersByQuestionId(questionId);
         }
 
         [HttpPut("vote")]
