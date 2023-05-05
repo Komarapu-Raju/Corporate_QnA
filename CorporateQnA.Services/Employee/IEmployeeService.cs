@@ -12,7 +12,7 @@ namespace CorporateQnA.Services.Interfaces
 
         void AddEmployee(Employee newEmployee);
 
-        IEnumerable<LocationDropdown> GetLocations();
+        IEnumerable<Dropdown> GetLocations();
 
         IEnumerable<Dropdown> GetDepatments();
 

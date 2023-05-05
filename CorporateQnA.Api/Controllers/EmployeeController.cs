@@ -33,7 +33,7 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpGet("location")]
-        public IEnumerable<LocationDropdown> GetLocations()
+        public IEnumerable<Dropdown> GetLocations()
         {
             return this._employeeServices.GetLocations();
         }

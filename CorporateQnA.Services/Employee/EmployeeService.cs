@@ -41,9 +41,9 @@ namespace CorporateQnA.Services
             this._db.Insert(newEmployee);
         }
 
-        public IEnumerable<LocationDropdown> GetLocations()
+        public IEnumerable<Dropdown> GetLocations()
         {
-            return this._db.Query<LocationDropdown>("Select * from location");
+            return this._db.Query<Dropdown>("Select * from location");
         }
 
         public IEnumerable<Dropdown> GetDepatments()
