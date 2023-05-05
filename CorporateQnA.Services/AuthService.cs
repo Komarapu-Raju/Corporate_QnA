@@ -68,6 +68,8 @@ namespace CorporateQnA.Services
 
                 this._employeeService.AddEmployee(newEmployee);
 
+                var token = this._tokenService.GenerateToken(newlyAddedUser);
+
                 return new response { Status = "success", StatusMessage = "Registration successfull", Token = token };
             }
             return new response() { Status = "failed", StatusMessage = "Registration failed" };
