@@ -6,6 +6,6 @@ namespace CorporateQnA.Services
     {
         public Task<response> Login(LoginModel model);
 
-        public Task<string> Register(RegisterModel model);
+        public Task<response> Register(RegisterModel model);
     }
 }

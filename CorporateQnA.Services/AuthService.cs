@@ -50,12 +50,12 @@ namespace CorporateQnA.Services
             return new response() { Status = "success", StatusMessage = "Login Successfull",Token = token, ActiveEmployeeId = activeEmployeeId };
         }
 
-        public async Task<string> Register(RegisterModel model)
+        public async Task<response> Register(RegisterModel model)
         {
             var user = await this._userManager.FindByEmailAsync(model.Email);
             if (user != null)
             {
-                return "User with emailId already exists";
+                return new response() { Status = "failed", StatusMessage = "User with emailId already exists" };
             }
             var newUser = new IdentityUser() { Email = model.Email, UserName = model.Email };
             var result = await this._userManager.CreateAsync(newUser, model.Password);
@@ -68,9 +68,9 @@ namespace CorporateQnA.Services
 
                 this._employeeService.AddEmployee(newEmployee);
 
-                return this._tokenService.GenerateToken(newUser);
+                return new response { Status = "success", StatusMessage = "Registration successfull", Token = token };
             }
-            return "Registration failed";
+            return new response() { Status = "failed", StatusMessage = "Registration failed" };
         }
     }
 }

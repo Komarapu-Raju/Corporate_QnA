@@ -8,7 +8,7 @@ namespace CorporateQnA.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]/")]
-    [Authorize(AuthenticationSchemes = "Bearer")]
+    
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeService _employeeServices;
@@ -19,12 +19,14 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpGet("all")]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public IEnumerable<EmployeeListItem> GetAllEmployees()
         {
             return this._employeeServices.GetAllEmployees();
         }
 
         [HttpGet("{id}")]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public EmployeeListItem GetEmployeeById(Guid id)
         {
             return this._employeeServices.GetEmployeeById(id);

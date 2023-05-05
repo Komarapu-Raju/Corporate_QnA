@@ -22,17 +22,17 @@ namespace CorporateQnA.Api.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> RegisterUser(RegisterModel model)
+        public async Task<response> RegisterUser(RegisterModel model)
         {
             var result = await this._authService.Register(model);
-            return Ok(result);
+            return result;
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginModel model)
+        public async Task<response> Login(LoginModel model)
         {
             var result = await this._authService.Login(model);
-            return Ok(result);
+            return result;
         }
 
         [HttpPost("validateToken")]
